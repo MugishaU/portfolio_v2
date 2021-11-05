@@ -13,7 +13,7 @@ const Home: NextPage = () => {
 					content="Mugisha Uwiragiye's Developer Portfolio Highlighting Projects and Key Skills"
 				/>
 				<link rel="icon" href="/memoji-laptop.png" />
-				<meta name="theme-color" content="#0A192E" />
+				<meta name="theme-color" content="#CCD7F5" />
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link
 					rel="preconnect"
