@@ -12,6 +12,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 					name="viewport"
 					content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
 				/>
+				<meta name="mobile-web-app-capable" content="yes" />
+				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta
 					name="description"
 					content="Mugisha Uwiragiye's developer portfolio highlighting his projects and skills. Find out more about him, and how he builds secure, scalable solutions."
