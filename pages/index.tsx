@@ -11,7 +11,8 @@ const Home: NextPage = () => {
 				<footer>
 					<span className={styles.logo}>
 						<Image
-							src="/images/memoji-hi.png"
+							// src="/images/memoji-hi.png"
+							src="/icons/icon-512x512.png"
 							alt="Memoji of Mugisha"
 							width={100}
 							height={100}
