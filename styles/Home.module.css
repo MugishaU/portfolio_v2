@@ -118,3 +118,8 @@
 		flex-direction: column;
 	}
 }
+
+.email {
+	color: #feda69;
+	text-decoration: underline solid #feda69
+}
