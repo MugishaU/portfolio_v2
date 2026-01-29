@@ -1,6 +1,19 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+
+const navLinks = [
+  { href: "#about", label: "ABOUT ME", external: false },
+  { href: "https://github.com/MugishaU", label: "GITHUB", external: true },
+  { href: "https://linkedin.com/in/mugisha-uwiragiye", label: "LINKEDIN", external: true },
+  { href: "mailto:mugaboroyal@gmail.com", label: "EMAIL ME", external: true },
+  { href: "/cv", label: "CV", external: false },
+];
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden">
       {/* Subtle background gradient */}
@@ -12,45 +25,117 @@ export default function Home() {
         style={{
           backgroundImage: `linear-gradient(var(--color-foreground) 1px, transparent 1px),
                            linear-gradient(90deg, var(--color-foreground) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px'
+          backgroundSize: "60px 60px",
         }}
       />
 
       {/* Navigation */}
-      <nav className="relative w-full px-6 md:px-12 py-6 flex justify-end gap-4 md:gap-8 text-xs md:text-sm text-[var(--color-muted)] animate-fade-in">
-        <Link href="#about" className="link-underline hover:text-[var(--color-foreground)] transition-colors">
-          ABOUT ME
-        </Link>
-        <a
-          href="https://github.com/MugishaU"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="link-underline hover:text-[var(--color-foreground)] transition-colors"
+      <nav className="relative w-full px-6 md:px-12 py-6 flex justify-end items-center animate-fade-in">
+        {/* Desktop Nav */}
+        <div className="hidden md:flex gap-8 text-sm text-[var(--color-muted)]">
+          {navLinks.map((link) =>
+            link.external ? (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                className="link-underline hover:text-[var(--color-foreground)] transition-colors"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="link-underline hover:text-[var(--color-foreground)] transition-colors"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
+        </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          onClick={() => setMenuOpen(true)}
+          className="md:hidden flex flex-col gap-1.5 p-2"
+          aria-label="Open menu"
         >
-          GITHUB
-        </a>
-        <a
-          href="https://linkedin.com/in/mugisha-uwiragiye"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="link-underline hover:text-[var(--color-foreground)] transition-colors"
-        >
-          LINKEDIN
-        </a>
-        <a
-          href="mailto:mugaboroyal@gmail.com"
-          className="link-underline hover:text-[var(--color-foreground)] transition-colors"
-        >
-          EMAIL ME
-        </a>
-        <Link href="/cv" className="link-underline hover:text-[var(--color-foreground)] transition-colors">
-          CV
-        </Link>
+          <span className="w-6 h-0.5 bg-[var(--color-foreground)]" />
+          <span className="w-6 h-0.5 bg-[var(--color-foreground)]" />
+        </button>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`fixed inset-0 z-50 bg-[var(--color-background)] flex flex-col transition-all duration-500 ${
+          menuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      >
+        {/* Close button */}
+        <div className="w-full px-6 py-6 flex justify-end">
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="p-2 text-[var(--color-foreground)]"
+            aria-label="Close menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Menu Links */}
+        <div className="flex-1 flex flex-col items-center justify-center gap-8">
+          {navLinks.map((link, index) => (
+            <div
+              key={link.label}
+              className={`transform transition-all duration-500 ${
+                menuOpen
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-4 opacity-0"
+              }`}
+              style={{ transitionDelay: menuOpen ? `${index * 100}ms` : "0ms" }}
+            >
+              {link.external ? (
+                <a
+                  href={link.href}
+                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                  rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-2xl font-medium text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-2xl font-medium text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
+                >
+                  {link.label}
+                </Link>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Hero Section */}
       <main className="relative flex-1 flex flex-col items-center justify-center px-6 text-center">
-        <h1 className="text-7xl md:text-9xl font-bold tracking-tighter gradient-text animate-fade-up">
+        <h1 className="text-7xl md:text-9xl font-bold tracking-tight gradient-text animate-fade-up leading-tight pb-2">
           Mugisha
         </h1>
 
