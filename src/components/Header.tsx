@@ -26,7 +26,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-8 text-sm text-[var(--color-muted)]">
+        <div className="hidden md:flex gap-8 text-base text-[var(--color-muted)]">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -56,13 +56,8 @@ export default function Header() {
           menuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}
       >
-        {/* Spacer for hamburger alignment */}
-        <div className="w-full px-6 py-6 flex justify-end">
-          <div className="w-10 h-10" />
-        </div>
-
         {/* Menu Links */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-8">
+        <div className="flex-1 flex flex-col items-center justify-center gap-10 -mt-20">
           {navLinks.map((link, index) => (
             <div
               key={link.label}
