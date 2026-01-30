@@ -3,16 +3,52 @@
 import Header from "@/components/Header";
 import { useState } from "react";
 
+const MAX_MESSAGE_LENGTH = 500;
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+  const [touched, setTouched] = useState({
+    name: false,
+    email: false,
+    message: false,
+  });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isValidName = (name: string) => name.trim().length >= 2;
+  const isValidMessage = (message: string) => message.trim().length >= 10 && message.length <= MAX_MESSAGE_LENGTH;
+
+  const getInputClass = (field: "name" | "email" | "message") => {
+    const base = "w-full px-4 py-3 bg-[var(--color-background)] border rounded text-[var(--color-foreground)] focus:outline-none transition-colors";
+
+    if (!touched[field]) {
+      return `${base} border-[var(--color-muted)]/30 focus:border-[var(--color-accent)]`;
+    }
+
+    let isValid = false;
+    if (field === "name") isValid = isValidName(formData.name);
+    if (field === "email") isValid = isValidEmail(formData.email);
+    if (field === "message") isValid = isValidMessage(formData.message);
+
+    return `${base} ${isValid ? "border-green-500" : "border-red-500"}`;
+  };
+
+  const handleBlur = (field: "name" | "email" | "message") => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setTouched({ name: true, email: true, message: true });
+
+    if (!isValidName(formData.name) || !isValidEmail(formData.email) || !isValidMessage(formData.message)) {
+      return;
+    }
+
     setStatus("loading");
 
     try {
@@ -25,6 +61,7 @@ export default function ContactPage() {
       if (response.ok) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
+        setTouched({ name: false, email: false, message: false });
       } else {
         setStatus("error");
       }
@@ -68,12 +105,15 @@ export default function ContactPage() {
             <input
               type="text"
               id="name"
-              required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-3 bg-[var(--color-background)] border border-[var(--color-muted)]/30 rounded text-[var(--color-foreground)] focus:outline-none focus:border-[var(--color-accent)] transition-colors"
+              onBlur={() => handleBlur("name")}
+              className={getInputClass("name")}
               placeholder="Your name"
             />
+            {touched.name && !isValidName(formData.name) && (
+              <p className="text-red-400 text-xs mt-1">Name must be at least 2 characters</p>
+            )}
           </div>
 
           <div>
@@ -83,27 +123,42 @@ export default function ContactPage() {
             <input
               type="email"
               id="email"
-              required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-4 py-3 bg-[var(--color-background)] border border-[var(--color-muted)]/30 rounded text-[var(--color-foreground)] focus:outline-none focus:border-[var(--color-accent)] transition-colors"
+              onBlur={() => handleBlur("email")}
+              className={getInputClass("email")}
               placeholder="your@email.com"
             />
+            {touched.email && !isValidEmail(formData.email) && (
+              <p className="text-red-400 text-xs mt-1">Please enter a valid email address</p>
+            )}
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-sm text-[var(--color-muted)] mb-2">
-              Message
-            </label>
+            <div className="flex justify-between items-center mb-2">
+              <label htmlFor="message" className="block text-sm text-[var(--color-muted)]">
+                Message
+              </label>
+              <span className={`text-xs ${formData.message.length > MAX_MESSAGE_LENGTH ? "text-red-400" : "text-[var(--color-muted)]"}`}>
+                {formData.message.length}/{MAX_MESSAGE_LENGTH}
+              </span>
+            </div>
             <textarea
               id="message"
-              required
               rows={5}
               value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full px-4 py-3 bg-[var(--color-background)] border border-[var(--color-muted)]/30 rounded text-[var(--color-foreground)] focus:outline-none focus:border-[var(--color-accent)] transition-colors resize-none"
+              onChange={(e) => setFormData({ ...formData, message: e.target.value.slice(0, MAX_MESSAGE_LENGTH + 50) })}
+              onBlur={() => handleBlur("message")}
+              className={`${getInputClass("message")} resize-none`}
               placeholder="Your message..."
             />
+            {touched.message && !isValidMessage(formData.message) && (
+              <p className="text-red-400 text-xs mt-1">
+                {formData.message.length > MAX_MESSAGE_LENGTH
+                  ? "Message is too long"
+                  : "Message must be at least 10 characters"}
+              </p>
+            )}
           </div>
 
           <button
