@@ -75,7 +75,7 @@ export default function Home() {
               <Link
                 href={link.href}
                 onClick={(e) => e.stopPropagation()}
-                className="text-[1.6rem] font-medium text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors uppercase"
+                className="text-[1.6rem] font-normal text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors uppercase"
               >
                 {link.label}
               </Link>
