@@ -26,7 +26,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-8 text-base text-[var(--color-muted)]">
+        <div className="hidden md:flex gap-10 text-lg text-[var(--color-muted)]">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -57,7 +57,7 @@ export default function Header() {
         }`}
       >
         {/* Menu Links */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-10 -mt-20">
+        <div className="flex-1 flex flex-col items-center justify-center gap-10">
           {navLinks.map((link, index) => (
             <div
               key={link.label}
