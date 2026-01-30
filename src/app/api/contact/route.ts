@@ -18,9 +18,9 @@ export async function POST(request: Request) {
 
     // Notify site owner of new submission
     await resend.emails.send({
-      from: "Portfolio Contact <no-reply@mugisha.io>",
+      from: "Mugisha Portfolio Contact Form <no-reply@mugisha.io>",
       to: "me@mugisha.io",
-      subject: "Portfolio Contact Form",
+      subject: `New Enquiry: ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     });
 
