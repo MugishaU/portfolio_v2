@@ -163,7 +163,7 @@ export default function ContactPage() {
 
           <button
             type="submit"
-            disabled={status === "loading"}
+            disabled={status === "loading" || !isValidName(formData.name) || !isValidEmail(formData.email) || !isValidMessage(formData.message)}
             className="w-full px-8 py-4 bg-[var(--color-accent)] text-[var(--color-background)] font-semibold rounded glow-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           >
             {status === "loading" ? "Sending..." : "Send Message"}
