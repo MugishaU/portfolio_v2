@@ -13,7 +13,7 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="h-screen flex flex-col relative overflow-hidden">
+    <div className="h-dvh flex flex-col relative overflow-hidden">
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-background)] via-[var(--color-background)] to-[#112240] pointer-events-none" />
 
@@ -28,7 +28,7 @@ export default function Home() {
       />
 
       {/* Navigation */}
-      <nav className="relative w-full px-6 md:px-12 py-6 flex justify-end items-center animate-fade-in z-50">
+      <nav className="sticky top-0 w-full px-6 md:px-12 py-6 flex justify-end items-center animate-fade-in z-50 bg-[var(--color-background)]/80 backdrop-blur-sm">
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-8 text-sm text-[var(--color-muted)]">
           {navLinks.map((link) => (
