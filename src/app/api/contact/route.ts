@@ -24,6 +24,14 @@ export async function POST(request: Request) {
       text: `Hi ${name},\n\nThank you for your message! I've received it and will get back to you soon.\n\nYour message:\n"${message}"\n\nBest,\nMugisha`,
     });
 
+    // Notify site owner of new submission
+    await resend.emails.send({
+      from: "Portfolio Contact <onboarding@resend.dev>",
+      to: "mugaboroyal@gmail.com",
+      subject: `New contact from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    });
+
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Contact form error:", error);
