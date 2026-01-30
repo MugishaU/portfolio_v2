@@ -17,8 +17,12 @@ export default function Header() {
 
   const handleMobileNavClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
-    router.push(href);
     setMenuOpen(false);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        router.push(href);
+      });
+    });
   };
 
   return (
