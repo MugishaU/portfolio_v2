@@ -24,7 +24,7 @@ export default function ProjectsPage() {
         >
           Projects
         </h1>
-        <p className="mt-4 text-[var(--color-muted)]">Coming soon...</p>
+        <p className="mt-8 text-[var(--color-muted)]">Coming soon...</p>
       </main>
 
       <ContactFooter />
