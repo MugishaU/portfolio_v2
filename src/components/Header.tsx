@@ -17,10 +17,8 @@ export default function Header() {
 
   const handleMobileNavClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
+    router.push(href);
     setMenuOpen(false);
-    setTimeout(() => {
-      router.push(href);
-    }, 500);
   };
 
   return (
