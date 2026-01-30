@@ -76,7 +76,7 @@ export default function Header() {
             >
               <Link
                 href={link.href}
-                onClick={(e) => e.stopPropagation()}
+                onClick={() => setMenuOpen(false)}
                 className="text-[1.6rem] font-normal text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors uppercase"
               >
                 {link.label}
