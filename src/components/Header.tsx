@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 const navLinks = [
@@ -13,6 +13,15 @@ const navLinks = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleMobileNavClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    setTimeout(() => {
+      router.push(href);
+    }, 500);
+  };
 
   return (
     <>
@@ -76,7 +85,7 @@ export default function Header() {
             >
               <Link
                 href={link.href}
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => handleMobileNavClick(e, link.href)}
                 className="text-[1.6rem] font-normal text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors uppercase"
               >
                 {link.label}
