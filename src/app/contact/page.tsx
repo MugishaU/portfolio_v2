@@ -72,7 +72,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="h-dvh flex flex-col relative overflow-hidden">
       {/* Background */}
       <div className="fixed inset-0 bg-gradient-to-br from-[var(--color-background)] via-[var(--color-background)] to-[#112240] pointer-events-none" />
       <div
@@ -86,19 +86,19 @@ export default function ContactPage() {
 
       <Header />
 
-      <main className="relative flex-1 flex flex-col items-center px-6 py-12 md:py-20">
+      <main className="relative flex-1 flex flex-col items-center px-6 py-6 md:py-10 overflow-y-auto">
         <h1
           className="text-4xl md:text-6xl font-bold tracking-tight text-[var(--color-foreground)] mb-4"
           style={{ fontFamily: "var(--font-heading)" }}
         >
           Contact Me
         </h1>
-        <p className="text-[var(--color-muted)] mb-12 text-center max-w-md">
+        <p className="text-[var(--color-muted)] mb-6 text-center max-w-md">
           Have a question or want to work together? Send me a message.
         </p>
 
         {/* Contact Form */}
-        <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
+        <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4">
           <div>
             <label htmlFor="name" className="block text-sm text-[var(--color-muted)] mb-2">
               Name
@@ -146,7 +146,7 @@ export default function ContactPage() {
             </div>
             <textarea
               id="message"
-              rows={5}
+              rows={3}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value.slice(0, MAX_MESSAGE_LENGTH + 50) })}
               onBlur={() => handleBlur("message")}
@@ -187,7 +187,7 @@ export default function ContactPage() {
         </form>
 
         {/* Direct Contact Info */}
-        <div className="mt-16 flex flex-col items-center gap-4">
+        <div className="mt-8 flex flex-col items-center gap-3">
           <p className="text-[var(--color-muted)] text-sm">Or reach out directly:</p>
           <div className="flex gap-6">
             <a
