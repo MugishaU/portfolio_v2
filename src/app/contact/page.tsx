@@ -1,0 +1,234 @@
+"use client";
+
+import Header from "@/components/Header";
+import { useState } from "react";
+
+const MAX_MESSAGE_LENGTH = 500;
+
+export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [touched, setTouched] = useState({
+    name: false,
+    email: false,
+    message: false,
+  });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isValidName = (name: string) => name.trim().length >= 2;
+  const isValidMessage = (message: string) => message.trim().length >= 10 && message.length <= MAX_MESSAGE_LENGTH;
+
+  const getInputClass = (field: "name" | "email" | "message") => {
+    const base = "w-full px-4 py-3 bg-[var(--color-background)] border rounded text-[var(--color-foreground)] focus:outline-none transition-colors";
+
+    if (!touched[field]) {
+      return `${base} border-[var(--color-muted)]/30 focus:border-[var(--color-accent)]`;
+    }
+
+    let isValid = false;
+    if (field === "name") isValid = isValidName(formData.name);
+    if (field === "email") isValid = isValidEmail(formData.email);
+    if (field === "message") isValid = isValidMessage(formData.message);
+
+    return `${base} ${isValid ? "border-green-500" : "border-red-500"}`;
+  };
+
+  const handleBlur = (field: "name" | "email" | "message") => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setTouched({ name: true, email: true, message: true });
+
+    if (!isValidName(formData.name) || !isValidEmail(formData.email) || !isValidMessage(formData.message)) {
+      return;
+    }
+
+    setStatus("loading");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setTouched({ name: false, email: false, message: false });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
+    <div className="h-dvh flex flex-col relative overflow-hidden">
+      {/* Background */}
+      <div className="fixed inset-0 bg-gradient-to-br from-[var(--color-background)] via-[var(--color-background)] to-[#112240] pointer-events-none" />
+      <div
+        className="fixed inset-0 opacity-[0.02] pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(var(--color-foreground) 1px, transparent 1px),
+                           linear-gradient(90deg, var(--color-foreground) 1px, transparent 1px)`,
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      <Header />
+
+      <main className="relative flex-1 flex flex-col items-center px-6 py-6 md:py-10 overflow-y-auto">
+        <h1
+          className="text-4xl md:text-6xl font-bold tracking-tight text-[var(--color-foreground)] mb-6 uppercase"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
+          Contact Me
+        </h1>
+        <p className="text-[var(--color-muted)] mb-6 text-center max-w-md">
+          Have a question or want to work together? Send me a message.
+        </p>
+
+        {/* Contact Form */}
+        <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4">
+          <div>
+            <label htmlFor="name" className="block text-sm text-[var(--color-muted)] mb-2">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              onBlur={() => handleBlur("name")}
+              className={getInputClass("name")}
+              placeholder="Your name"
+            />
+            {touched.name && !isValidName(formData.name) && (
+              <p className="text-red-400 text-xs mt-1">Name must be at least 2 characters</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm text-[var(--color-muted)] mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              onBlur={() => handleBlur("email")}
+              className={getInputClass("email")}
+              placeholder="your@email.com"
+            />
+            {touched.email && !isValidEmail(formData.email) && (
+              <p className="text-red-400 text-xs mt-1">Please enter a valid email address</p>
+            )}
+          </div>
+
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <label htmlFor="message" className="block text-sm text-[var(--color-muted)]">
+                Message
+              </label>
+              <span className={`text-xs ${formData.message.length > MAX_MESSAGE_LENGTH ? "text-red-400" : "text-[var(--color-muted)]"}`}>
+                {formData.message.length}/{MAX_MESSAGE_LENGTH}
+              </span>
+            </div>
+            <textarea
+              id="message"
+              rows={3}
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value.slice(0, MAX_MESSAGE_LENGTH + 50) })}
+              onBlur={() => handleBlur("message")}
+              className={`${getInputClass("message")} resize-none`}
+              placeholder="Your message..."
+            />
+            {touched.message && !isValidMessage(formData.message) && (
+              <p className="text-red-400 text-xs mt-1">
+                {formData.message.length > MAX_MESSAGE_LENGTH
+                  ? "Message is too long"
+                  : "Message must be at least 10 characters"}
+              </p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            disabled={status === "loading" || !isValidName(formData.name) || !isValidEmail(formData.email) || !isValidMessage(formData.message)}
+            className={`w-full px-8 py-4 font-semibold rounded transition-all ${
+              status === "loading" || !isValidName(formData.name) || !isValidEmail(formData.email) || !isValidMessage(formData.message)
+                ? "bg-[var(--color-muted)]/30 text-[var(--color-muted)] cursor-not-allowed"
+                : "bg-[var(--color-accent)] text-[var(--color-background)] glow-hover"
+            }`}
+          >
+            {status === "loading" ? "Sending..." : "Send Message"}
+          </button>
+
+          {status === "success" && (
+            <p className="text-[var(--color-accent-secondary)] text-center">
+              Message sent successfully!
+            </p>
+          )}
+          {status === "error" && (
+            <p className="text-red-400 text-center">
+              Something went wrong. Please try again or email me directly.
+            </p>
+          )}
+        </form>
+
+        {/* Direct Contact Info */}
+        <div className="mt-8 flex flex-col items-center gap-3">
+          <p className="text-[var(--color-muted)] text-sm">Or reach out directly:</p>
+          <div className="flex gap-6">
+            <a
+              href="mailto:me@mugisha.io"
+              className="flex items-center gap-2 text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+              <span className="text-sm">me@mugisha.io</span>
+            </a>
+            <a
+              href="https://linkedin.com/in/mugisha-uwiragiye"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              <span className="text-sm">LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
