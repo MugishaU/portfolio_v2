@@ -21,7 +21,7 @@ export async function POST(request: Request) {
       from: "Mugisha Portfolio Contact Form <no-reply@mugisha.io>",
       to: "me@mugisha.io",
       subject: `New Enquiry: ${name}`,
-      text: `Name: ${name}\n\nEmail: ${email}\n\nMessage:\n\n${message}`,
+      html: `<p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Message:</b></p><p><i>${message}</i></p>`,
     });
 
     // Send confirmation email to the user
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
       from: "Mugisha <no-reply@mugisha.io>",
       to: email,
       subject: "Thanks for reaching out!",
-      text: `Hi ${name},\n\nThank you for your message! I've received it and will get back to you soon.\n\nYour message:\n"${message}"\n\nBest,\nMugisha\n\nPlease do not reply to this message.`,
+      html: `<p>Hi ${name},</p><p>Thank you for your message! I've received it and will get back to you soon.</p><p>Best,<br>Mugisha</p><hr><p>Your message:<br><i>${message}</i></p><p>Please do not reply to this message.</p>`,
     });
 
     return NextResponse.json({ success: true });
