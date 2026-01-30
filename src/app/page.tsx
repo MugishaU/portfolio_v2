@@ -30,7 +30,7 @@ export default function Home() {
       />
 
       {/* Navigation */}
-      <nav className="relative w-full px-6 md:px-12 py-6 flex justify-end items-center animate-fade-in">
+      <nav className="relative w-full px-6 md:px-12 py-6 flex justify-end items-center animate-fade-in z-50">
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-8 text-sm text-[var(--color-muted)]">
           {navLinks.map((link) =>
@@ -56,45 +56,26 @@ export default function Home() {
           )}
         </div>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile Hamburger - animated to X */}
         <button
-          onClick={() => setMenuOpen(true)}
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          aria-label="Open menu"
+          onClick={() => setMenuOpen(!menuOpen)}
+          className={`md:hidden flex flex-col justify-center items-center w-10 h-10 ${menuOpen ? "hamburger-open" : ""}`}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
-          <span className="w-6 h-0.5 bg-[var(--color-foreground)]" />
-          <span className="w-6 h-0.5 bg-[var(--color-foreground)]" />
+          <span className="hamburger-line w-8 h-0.5 bg-[var(--color-foreground)] mb-2" />
+          <span className="hamburger-line w-8 h-0.5 bg-[var(--color-foreground)]" />
         </button>
       </nav>
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-50 bg-[var(--color-background)] flex flex-col transition-all duration-500 ${
-          menuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        className={`fixed inset-0 z-40 bg-[var(--color-background)] flex flex-col transition-all duration-500 ${
+          menuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}
       >
-        {/* Close button */}
+        {/* Spacer for hamburger alignment */}
         <div className="w-full px-6 py-6 flex justify-end">
-          <button
-            onClick={() => setMenuOpen(false)}
-            className="p-2 text-[var(--color-foreground)]"
-            aria-label="Close menu"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
+          <div className="w-10 h-10" />
         </div>
 
         {/* Menu Links */}
@@ -135,11 +116,17 @@ export default function Home() {
 
       {/* Hero Section */}
       <main className="relative flex-1 flex flex-col items-center justify-center px-6 text-center">
-        <h1 className="text-7xl md:text-9xl font-bold tracking-tight gradient-text animate-fade-up leading-tight pb-2">
-          Mugisha
+        <h1
+          className="text-7xl md:text-9xl font-bold tracking-tight gradient-text animate-fade-up leading-tight pb-2"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
+          MUGISHA
         </h1>
 
-        <p className="mt-4 text-lg md:text-xl text-[var(--color-muted)] font-light tracking-widest animate-fade-up animate-delay-100">
+        <p
+          className="mt-4 text-lg md:text-xl text-[var(--color-muted)] font-light tracking-widest animate-fade-up animate-delay-100"
+          style={{ fontFamily: "var(--font-pronunciation)" }}
+        >
           /mu · gi · ʃa/
         </p>
 
