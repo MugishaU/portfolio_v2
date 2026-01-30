@@ -164,7 +164,11 @@ export default function ContactPage() {
           <button
             type="submit"
             disabled={status === "loading" || !isValidName(formData.name) || !isValidEmail(formData.email) || !isValidMessage(formData.message)}
-            className="w-full px-8 py-4 bg-[var(--color-accent)] text-[var(--color-background)] font-semibold rounded glow-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className={`w-full px-8 py-4 font-semibold rounded transition-all ${
+              status === "loading" || !isValidName(formData.name) || !isValidEmail(formData.email) || !isValidMessage(formData.message)
+                ? "bg-[var(--color-muted)]/30 text-[var(--color-muted)] cursor-not-allowed"
+                : "bg-[var(--color-accent)] text-[var(--color-background)] glow-hover"
+            }`}
           >
             {status === "loading" ? "Sending..." : "Send Message"}
           </button>
