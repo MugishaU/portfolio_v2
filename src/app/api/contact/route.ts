@@ -16,20 +16,20 @@ export async function POST(request: Request) {
       );
     }
 
-    // Send confirmation email to the user
-    await resend.emails.send({
-      from: "Mugisha <hello@mugisha.io>",
-      to: email,
-      subject: "Thanks for reaching out!",
-      text: `Hi ${name},\n\nThank you for your message! I've received it and will get back to you soon.\n\nYour message:\n"${message}"\n\nBest,\nMugisha`,
-    });
-
     // Notify site owner of new submission
     await resend.emails.send({
       from: "Portfolio Contact <hello@mugisha.io>",
       to: "mugaboroyal@gmail.com",
       subject: `New contact from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    });
+
+    // Send confirmation email to the user
+    await resend.emails.send({
+      from: "Mugisha <me@mugisha.io>",
+      to: email,
+      subject: "Thanks for reaching out!",
+      text: `Hi ${name},\n\nThank you for your message! I've received it and will get back to you soon.\n\nYour message:\n"${message}"\n\nBest,\nMugisha`,
     });
 
     return NextResponse.json({ success: true });
