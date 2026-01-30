@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navLinks = [
@@ -11,6 +12,7 @@ const navLinks = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -26,12 +28,16 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-10 text-lg text-[var(--color-muted)]">
+        <div className="hidden md:flex gap-10 text-lg">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="link-underline hover:text-[var(--color-foreground)] transition-colors"
+              className={`link-underline transition-colors ${
+                pathname === link.href
+                  ? "text-[var(--color-accent)]"
+                  : "text-[var(--color-muted)] hover:text-[var(--color-foreground)]"
+              }`}
             >
               {link.label}
             </Link>
@@ -71,7 +77,7 @@ export default function Header() {
               <Link
                 href={link.href}
                 onClick={(e) => e.stopPropagation()}
-                className="text-3xl font-semibold text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors uppercase"
+                className="text-[1.65rem] font-semibold text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors uppercase"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 {link.label}

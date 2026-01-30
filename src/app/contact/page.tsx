@@ -87,7 +87,7 @@ export default function ContactPage() {
 
       <main className="relative flex-1 flex flex-col items-center px-6 py-6 md:py-10 overflow-y-auto">
         <h1
-          className="text-4xl md:text-6xl font-bold tracking-tight text-[var(--color-foreground)] mb-6"
+          className="text-4xl md:text-6xl font-bold tracking-tight text-[var(--color-foreground)] mb-6 uppercase"
           style={{ fontFamily: "var(--font-heading)" }}
         >
           Contact Me

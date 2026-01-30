@@ -19,7 +19,7 @@ export default function AboutPage() {
 
       <main className="relative flex-1 flex flex-col items-center justify-center px-6 py-12">
         <h1
-          className="text-4xl md:text-6xl font-bold tracking-tight text-[var(--color-foreground)]"
+          className="text-4xl md:text-6xl font-bold tracking-tight text-[var(--color-foreground)] uppercase"
           style={{ fontFamily: "var(--font-heading)" }}
         >
           About Me
