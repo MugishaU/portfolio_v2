@@ -4,18 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navLinks = [
-  { href: "#about", label: "ABOUT ME", external: false },
-  { href: "https://github.com/MugishaU", label: "GITHUB", external: true },
-  { href: "https://linkedin.com/in/mugisha-uwiragiye", label: "LINKEDIN", external: true },
-  { href: "mailto:mugaboroyal@gmail.com", label: "EMAIL ME", external: true },
-  { href: "/cv", label: "CV", external: false },
+  { href: "/about", label: "ABOUT ME" },
+  { href: "/projects", label: "PROJECTS" },
+  { href: "/contact", label: "CONTACT ME" },
 ];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden">
+    <div className="h-screen flex flex-col relative overflow-hidden">
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-background)] via-[var(--color-background)] to-[#112240] pointer-events-none" />
 
@@ -33,27 +31,15 @@ export default function Home() {
       <nav className="relative w-full px-6 md:px-12 py-6 flex justify-end items-center animate-fade-in z-50">
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-8 text-sm text-[var(--color-muted)]">
-          {navLinks.map((link) =>
-            link.external ? (
-              <a
-                key={link.label}
-                href={link.href}
-                target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                className="link-underline hover:text-[var(--color-foreground)] transition-colors"
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="link-underline hover:text-[var(--color-foreground)] transition-colors"
-              >
-                {link.label}
-              </Link>
-            )
-          )}
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="link-underline hover:text-[var(--color-foreground)] transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
 
         {/* Mobile Hamburger - animated to X */}
@@ -69,6 +55,7 @@ export default function Home() {
 
       {/* Mobile Menu Overlay */}
       <div
+        onClick={() => setMenuOpen(false)}
         className={`fixed inset-0 z-40 bg-[var(--color-background)] flex flex-col transition-all duration-500 ${
           menuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}
@@ -90,25 +77,13 @@ export default function Home() {
               }`}
               style={{ transitionDelay: menuOpen ? `${index * 100}ms` : "0ms" }}
             >
-              {link.external ? (
-                <a
-                  href={link.href}
-                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                  rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                  onClick={() => setMenuOpen(false)}
-                  className="text-2xl font-medium text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="text-2xl font-medium text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
-                >
-                  {link.label}
-                </Link>
-              )}
+              <Link
+                href={link.href}
+                onClick={(e) => e.stopPropagation()}
+                className="text-2xl font-medium text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
+              >
+                {link.label}
+              </Link>
             </div>
           ))}
         </div>
@@ -136,7 +111,7 @@ export default function Home() {
         </p>
 
         <Link
-          href="#projects"
+          href="/projects"
           className="mt-12 px-10 py-4 bg-[var(--color-accent)] text-[var(--color-background)] font-semibold rounded-sm glow-hover animate-fade-up animate-delay-300"
         >
           PROJECTS
@@ -144,9 +119,9 @@ export default function Home() {
       </main>
 
       {/* Contact Me Footer */}
-      <footer className="relative w-full py-8 flex justify-center animate-fade-up animate-delay-400">
-        <a
-          href="mailto:mugaboroyal@gmail.com"
+      <footer className="relative w-full py-6 flex justify-center animate-fade-up animate-delay-400">
+        <Link
+          href="/contact"
           className="group flex items-center gap-2 text-[var(--color-accent)] hover:gap-3 transition-all duration-300"
         >
           <svg
@@ -165,7 +140,7 @@ export default function Home() {
             <path d="M22 2L15 22L11 13L2 9L22 2Z" />
           </svg>
           <span className="text-sm font-medium">Contact Me</span>
-        </a>
+        </Link>
       </footer>
     </div>
   );
