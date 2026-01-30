@@ -3,7 +3,7 @@ import ContactFooter from "@/components/ContactFooter";
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="h-screen flex flex-col relative overflow-hidden">
       {/* Background */}
       <div className="fixed inset-0 bg-gradient-to-br from-[var(--color-background)] via-[var(--color-background)] to-[#112240] pointer-events-none" />
       <div

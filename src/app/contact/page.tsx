@@ -1,6 +1,7 @@
 "use client";
 
 import Header from "@/components/Header";
+import ContactFooter from "@/components/ContactFooter";
 import { useState } from "react";
 
 const MAX_MESSAGE_LENGTH = 500;
@@ -235,6 +236,8 @@ export default function ContactPage() {
           </div>
         </div>
       </main>
+
+      <ContactFooter />
     </div>
   );
 }

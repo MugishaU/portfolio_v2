@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <>
       {/* Navigation */}
-      <nav className="relative w-full px-6 md:px-12 py-6 flex justify-between items-center z-50">
+      <nav className="sticky top-0 w-full px-6 md:px-12 py-6 flex justify-between items-center z-50 bg-[var(--color-background)]/80 backdrop-blur-sm">
         {/* Logo/Home link */}
         <Link
           href="/"
