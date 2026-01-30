@@ -21,7 +21,7 @@ export async function POST(request: Request) {
       from: "Mugisha Portfolio Contact Form <no-reply@mugisha.io>",
       to: "me@mugisha.io",
       subject: `New Enquiry: ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      text: `Name: ${name}\n\nEmail: ${email}\n\nMessage:\n\n${message}`,
     });
 
     // Send confirmation email to the user
