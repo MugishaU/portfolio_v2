@@ -50,20 +50,6 @@ const experience: TimelineEntry[] = [
       },
     ],
   },
-  {
-    id: "exeter",
-    company: "Exeter University",
-    dateRange: "2016 - 2020",
-    roles: [
-      {
-        title: "BSc Computer Science",
-        bullets: [
-          "Porttitor, dapibus mi id, egestas lectus.",
-          "Donec vitae tempus augue.",
-        ],
-      },
-    ],
-  },
 ];
 
 export default function AboutPage() {
@@ -174,31 +160,33 @@ export default function AboutPage() {
 
                   {/* Expandable content */}
                   <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      isOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
+                    className={`grid transition-all duration-300 ease-in-out ${
+                      isOpen ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
                     }`}
                   >
-                    <div className="space-y-4">
-                      {entry.roles.map((role, roleIndex) => (
-                        <div key={roleIndex}>
-                          {entry.roles.length > 1 && (
-                            <h3 className="text-[var(--color-accent-secondary)] font-medium mb-2 text-sm">
-                              {role.title}
-                            </h3>
-                          )}
-                          <ul className="space-y-2">
-                            {role.bullets.map((bullet, bulletIndex) => (
-                              <li
-                                key={bulletIndex}
-                                className="text-[var(--color-muted)] text-sm flex gap-2"
-                              >
-                                <span className="text-[var(--color-accent)]">•</span>
-                                <span>{bullet}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
+                    <div className="overflow-hidden">
+                      <div className="space-y-4">
+                        {entry.roles.map((role, roleIndex) => (
+                          <div key={roleIndex}>
+                            {entry.roles.length > 1 && (
+                              <h3 className="text-[var(--color-accent-secondary)] font-medium mb-2 text-sm">
+                                {role.title}
+                              </h3>
+                            )}
+                            <ul className="space-y-2">
+                              {role.bullets.map((bullet, bulletIndex) => (
+                                <li
+                                  key={bulletIndex}
+                                  className="text-[var(--color-muted)] text-sm flex gap-2"
+                                >
+                                  <span className="text-[var(--color-accent)]">•</span>
+                                  <span>{bullet}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
