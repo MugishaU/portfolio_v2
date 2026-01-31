@@ -172,13 +172,6 @@ export default function AboutPage() {
                     >
                       {entry.company}
                     </span>
-                    <span
-                      className={`ml-auto text-[var(--color-muted)] transition-transform ${
-                        isOpen ? "rotate-180" : ""
-                      }`}
-                    >
-                      ▼
-                    </span>
                   </button>
 
                   {/* Expandable content */}
