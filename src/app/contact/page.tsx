@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "@/components/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MAX_MESSAGE_LENGTH = 500;
 
@@ -11,12 +11,18 @@ export default function ContactPage() {
     email: "",
     message: "",
   });
+  const [honeypot, setHoneypot] = useState("");
+  const [loadTime, setLoadTime] = useState<number>(0);
   const [touched, setTouched] = useState({
     name: false,
     email: false,
     message: false,
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  useEffect(() => {
+    setLoadTime(Date.now());
+  }, []);
 
   const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isValidName = (name: string) => name.trim().length >= 2;
@@ -55,7 +61,11 @@ export default function ContactPage() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          _gotcha: honeypot,
+          _timestamp: loadTime,
+        }),
       });
 
       if (response.ok) {
@@ -98,6 +108,17 @@ export default function ContactPage() {
 
         {/* Contact Form */}
         <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4">
+          {/* Honeypot field - hidden from humans, bots will fill it */}
+          <input
+            type="text"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            autoComplete="off"
+            tabIndex={-1}
+            aria-hidden="true"
+            className="absolute -left-[9999px] opacity-0 h-0 w-0"
+          />
           <div>
             <label htmlFor="name" className="block text-sm text-[var(--color-muted)] mb-2">
               Name
