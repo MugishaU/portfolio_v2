@@ -111,7 +111,7 @@ export default function ContactPage() {
           {/* Honeypot field - hidden from humans, bots will fill it */}
           <input
             type="text"
-            name="website"
+            name="company"
             value={honeypot}
             onChange={(e) => setHoneypot(e.target.value)}
             autoComplete="off"
