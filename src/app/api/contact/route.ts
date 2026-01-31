@@ -3,10 +3,24 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const MIN_SUBMIT_TIME_MS = 3000; // Minimum 3 seconds to fill out form
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, message, _gotcha, _timestamp } = body;
+
+    // Bot detection: honeypot field should be empty
+    if (_gotcha) {
+      // Silently reject but return success to not tip off bots
+      return NextResponse.json({ success: true });
+    }
+
+    // Bot detection: form submitted too quickly
+    if (_timestamp && Date.now() - _timestamp < MIN_SUBMIT_TIME_MS) {
+      // Silently reject but return success to not tip off bots
+      return NextResponse.json({ success: true });
+    }
 
     // Validate required fields
     if (!name || !email || !message) {
