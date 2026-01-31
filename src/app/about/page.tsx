@@ -215,7 +215,9 @@ export default function AboutPage() {
         </div>
       </main>
 
-      <ContactFooter />
+      <div className="relative">
+        <ContactFooter />
+      </div>
     </div>
   );
 }
