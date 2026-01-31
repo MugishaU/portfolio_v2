@@ -106,15 +106,7 @@ export default function AboutPage() {
           <p className="text-[var(--color-foreground)] text-base md:text-lg leading-relaxed max-w-xl">
             My name is <span className="text-[var(--color-accent)]">Mugisha Uwiragiye</span>, and I am currently a{" "}
             <span className="text-[var(--color-accent)]">Senior Software Engineer</span> at{" "}
-            <a
-              href="https://www.lapse.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--color-accent)] underline hover:text-[var(--color-accent-secondary)] transition-colors"
-            >
-              Lapse
-            </a>
-            . I primarily work with{" "}
+            <span className="text-[var(--color-accent)]">Lapse</span>. I primarily work with{" "}
             <span className="text-[var(--color-accent)]">TypeScript</span>,{" "}
             <span className="text-[var(--color-accent)]">Kubernetes</span>, and{" "}
             <span className="text-[var(--color-accent)]">DevOps</span> technologies.
