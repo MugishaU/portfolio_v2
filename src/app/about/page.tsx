@@ -119,7 +119,7 @@ export default function AboutPage() {
             <span className="text-[var(--color-accent)]">Kubernetes</span>, and{" "}
             <span className="text-[var(--color-accent)]">DevOps</span> technologies.
           </p>
-          <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-[var(--color-accent)]/30 shrink-0 md:ml-auto">
+          <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden border-2 border-[var(--color-accent)]/30 shrink-0 md:ml-auto">
             <img
               src="/profile.jpg"
               alt="Mugisha Uwiragiye"
