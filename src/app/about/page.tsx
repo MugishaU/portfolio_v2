@@ -102,8 +102,15 @@ export default function AboutPage() {
         </h1>
 
         {/* Bio with Photo */}
-        <div className="flex flex-col-reverse md:flex-row gap-8 mb-10 items-center md:items-start">
-          <p className="text-[var(--color-foreground)] text-base md:text-lg leading-relaxed max-w-xl">
+        <div className="flex flex-col gap-6 mb-10 items-center">
+          <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden border-2 border-[var(--color-accent)]/30">
+            <img
+              src="/profile.jpg"
+              alt="Mugisha Uwiragiye"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <p className="text-[var(--color-foreground)] text-base md:text-lg leading-relaxed max-w-xl text-center">
             My name is <span className="text-[var(--color-accent)]">Mugisha Uwiragiye</span>, and I am currently a{" "}
             <span className="text-[var(--color-accent)]">Senior Software Engineer</span> at{" "}
             <span className="text-[var(--color-accent)]">Lapse</span>. I primarily work with{" "}
@@ -111,27 +118,20 @@ export default function AboutPage() {
             <span className="text-[var(--color-accent)]">Kubernetes</span>, and{" "}
             <span className="text-[var(--color-accent)]">DevOps</span> technologies.
           </p>
-          <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden border-2 border-[var(--color-accent)]/30 shrink-0 md:ml-auto">
-            <img
-              src="/profile.jpg"
-              alt="Mugisha Uwiragiye"
-              className="w-full h-full object-cover"
-            />
-          </div>
         </div>
 
         <hr className="border-[var(--color-muted)]/30 mb-10" />
 
         {/* Experience Section - Accordion Timeline */}
-        <div className="max-w-2xl">
+        <div className="max-w-3xl">
           {experience.map((entry, index) => {
             const isOpen = selectedId === entry.id;
             return (
-              <div key={entry.id} className="flex gap-4">
+              <div key={entry.id} className="flex gap-4 md:gap-6">
                 {/* Timeline line and dot */}
                 <div className="flex flex-col items-center">
                   <div
-                    className={`w-3 h-3 rounded-full shrink-0 mt-1 ${
+                    className={`w-3 h-3 md:w-4 md:h-4 rounded-full shrink-0 mt-1 ${
                       isOpen
                         ? "bg-[var(--color-accent)]"
                         : "bg-[var(--color-muted)]/50"
@@ -143,20 +143,20 @@ export default function AboutPage() {
                 </div>
 
                 {/* Content */}
-                <div className="pb-6 flex-1">
+                <div className="pb-6 md:pb-8 flex-1">
                   <button
                     onClick={() => setSelectedId(isOpen ? "" : entry.id)}
-                    className="flex items-center gap-3 text-left w-full group"
+                    className="flex items-center gap-3 md:gap-4 text-left w-full group"
                   >
                     <span
-                      className={`text-xs ${
+                      className={`text-xs md:text-sm ${
                         isOpen ? "text-[var(--color-accent)]" : "text-[var(--color-muted)]"
                       }`}
                     >
                       {entry.dateRange}
                     </span>
                     <span
-                      className={`text-sm font-medium ${
+                      className={`text-sm md:text-base font-medium ${
                         isOpen
                           ? "text-[var(--color-foreground)]"
                           : "text-[var(--color-muted)] group-hover:text-[var(--color-foreground)]"
@@ -173,14 +173,14 @@ export default function AboutPage() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <div className="space-y-4">
+                      <div className="space-y-4 md:space-y-5">
                         {entry.roles.map((role, roleIndex) => (
                           <div key={roleIndex}>
                             <div className="mb-2">
-                              <h3 className="text-[var(--color-accent-secondary)] font-medium text-sm">
+                              <h3 className="text-[var(--color-accent)] font-medium text-sm md:text-base">
                                 {role.title}
                               </h3>
-                              <span className="text-[var(--color-muted)] text-xs">
+                              <span className="text-[var(--color-muted)] text-xs md:text-sm">
                                 {role.dateRange}
                               </span>
                             </div>
@@ -188,7 +188,7 @@ export default function AboutPage() {
                               {role.bullets.map((bullet, bulletIndex) => (
                                 <li
                                   key={bulletIndex}
-                                  className="text-[var(--color-muted)] text-sm flex gap-2"
+                                  className="text-[var(--color-muted)] text-sm md:text-base flex gap-2"
                                 >
                                   <span className="text-[var(--color-accent)]">•</span>
                                   <span>{bullet}</span>
