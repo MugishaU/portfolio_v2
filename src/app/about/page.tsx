@@ -29,26 +29,25 @@ const experience: TimelineEntry[] = [
         title: 'Senior Software Engineer',
         dateRange: 'Jan 2026 - Present',
         bullets: [
-          'Leading multiple core features on a new initiative, owning projects from architectural design through deployment.',
-          'Built production deployment pipeline using GitHub Actions, deploying Terraform and Helm charts to Kubernetes. Integrated with Slack and Linear to give non-technical stakeholders visibility, reducing questions to the engineering team.',
+          'Led backend development for multiple core features on a new initiative, helping shape the architecture and take systems into production.',
+          'Built a production deployment pipeline with GitHub Actions, Terraform, and Kubernetes (Helm), with Slack and Linear integrations to give non-technical stakeholders better visibility and reduce engineering overhead.',
         ],
       },
       {
         title: 'Software Engineer',
         dateRange: 'Jul 2024 - Jan 2026',
         bullets: [
-          'Led backend development for multiple core features, owning projects from architectural design through production deployment.',
           <>
-            Built streaks, an end-to-end user retention system with scheduled
-            notifications across timezones and live activity reminders.
-            Contributed to increasing media sent by engaged users from{' '}
-            <Num>400k</Num> to <Num>600k</Num> on high frequency days.
+            Built Streaks, a lenient retention system with timezone-aware
+            notifications and live activity reminders, contributing to an
+            increase in media sent by engaged users from <Num>400k</Num> to{' '}
+            <Num>600k</Num> on high-frequency days.
           </>,
           <>
-            Built content moderation systems including user reporting and
-            blocking for App Store compliance. Reduced banned-list update time
-            from <Num>over a day</Num> to <Num>30 seconds</Num> by shipping a
-            self-serve dashboard with real-time visibility into banned profiles.
+            Built content moderation systems, including user reporting and
+            blocking for App Store compliance, and shipped a self-serve
+            dashboard that reduced banned-list update time from{' '}
+            <Num>over a day</Num> to under <Num>30 seconds</Num>.
           </>,
         ],
       },
@@ -120,15 +119,8 @@ export default function AboutPage() {
         </h1>
 
         {/* Bio with Photo */}
-        <div className='flex flex-col gap-6 mb-10 items-center'>
-          <div className='w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden border-2 border-[var(--color-accent)]/30'>
-            <img
-              src='/profile.png'
-              alt='Mugisha Uwiragiye'
-              className='w-full h-full object-cover'
-            />
-          </div>
-          <div className='text-[var(--color-foreground)] text-base md:text-lg leading-relaxed w-full text-left'>
+        <div className='flex flex-col md:flex-row gap-6 mb-10 items-center md:items-start'>
+          <div className='text-[var(--color-foreground)] text-base md:text-lg leading-relaxed flex-1 text-left order-2 md:order-1'>
             <p>
               My name is{' '}
               <span className='text-[var(--color-accent)]'>
@@ -160,6 +152,13 @@ export default function AboutPage() {
               . I enjoy solving complex problems and delivering reliable systems
               at scale.
             </p>
+          </div>
+          <div className='w-32 h-32 md:w-40 md:h-40 rounded-lg overflow-hidden shrink-0 order-1 md:order-2 shadow-lg shadow-black/20'>
+            <img
+              src='/profile.png'
+              alt='Mugisha Uwiragiye'
+              className='w-full h-full object-cover'
+            />
           </div>
         </div>
 
