@@ -60,7 +60,6 @@ export default function ProjectsPage() {
                       <Link
                         key={tag}
                         href={`/tags/${tagToSlug(tag)}`}
-                        onClick={(e) => e.stopPropagation()}
                         className="text-xs px-2 py-1 rounded bg-[var(--color-accent)]/10 text-[var(--color-accent)] hover:bg-[var(--color-accent)]/20 transition-colors"
                       >
                         {tag}
