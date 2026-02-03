@@ -18,7 +18,7 @@ export const projects: Project[] = [
     thumbnail: "/projects/7styles-thumb.svg",
     image: "/projects/7styles.svg",
     websiteUrl: "https://www.7styles.co.uk",
-    tags: ["WordPress", "Web Design", "PHP"],
+    tags: ["WordPress", "Web Design"],
   },
   {
     slug: "amos-onchiri",
@@ -28,20 +28,32 @@ export const projects: Project[] = [
     thumbnail: "/projects/amos-onchiri-thumb.svg",
     image: "/projects/amos-onchiri.svg",
     websiteUrl: "https://www.amosonchiri.com",
-    tags: ["WordPress", "Web Design", "Portfolio"],
+    tags: ["WordPress", "Web Design"],
   },
   {
     slug: "twitter-bot",
     title: "Twitter Bot",
     description:
-      "A Python-based Twitter bot that automates interactions on the platform. Built as a personal project to explore the Twitter API and automation techniques. The bot can perform various automated tasks while respecting rate limits and platform guidelines.",
+      "A TypeScript-based Twitter bot that automates interactions on the platform. Built as a personal project to explore the Twitter API and automation techniques. Deployed using GitHub Actions for CI/CD, Terraform for infrastructure as code, and hosted on AWS.",
     thumbnail: "/projects/twitter-bot-thumb.svg",
     image: "/projects/twitter-bot.svg",
     githubUrl: "https://github.com/MugishaU/twitter-bot",
-    tags: ["Python", "Twitter API", "Automation"],
+    tags: ["TypeScript", "GitHub Actions", "Terraform", "AWS"],
   },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((project) => project.slug === slug);
+}
+
+export function tagToSlug(tag: string): string {
+  return tag.toLowerCase().replace(/\s+/g, "-");
+}
+
+export function getAllTags(): string[] {
+  const tags = new Set<string>();
+  projects.forEach((project) => {
+    project.tags.forEach((tag) => tags.add(tag));
+  });
+  return Array.from(tags);
 }

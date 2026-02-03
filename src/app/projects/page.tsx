@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
-import ContactFooter from "@/components/ContactFooter";
 import Link from "next/link";
-import { projects } from "@/data/projects";
+import { projects, tagToSlug } from "@/data/projects";
 
 export default function ProjectsPage() {
   return (
@@ -58,12 +57,14 @@ export default function ProjectsPage() {
                   </h2>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {project.tags.slice(0, 3).map((tag) => (
-                      <span
+                      <Link
                         key={tag}
-                        className="text-xs px-2 py-1 rounded bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+                        href={`/tags/${tagToSlug(tag)}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-xs px-2 py-1 rounded bg-[var(--color-accent)]/10 text-[var(--color-accent)] hover:bg-[var(--color-accent)]/20 transition-colors"
                       >
                         {tag}
-                      </span>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -101,10 +102,6 @@ export default function ProjectsPage() {
           </Link>
         </div>
       </main>
-
-      <div className="relative">
-        <ContactFooter />
-      </div>
     </div>
   );
 }

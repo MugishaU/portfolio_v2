@@ -1,8 +1,7 @@
 import Header from "@/components/Header";
-import ContactFooter from "@/components/ContactFooter";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects, getProjectBySlug } from "@/data/projects";
+import { projects, getProjectBySlug, tagToSlug } from "@/data/projects";
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -76,12 +75,13 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-8">
           {project.tags.map((tag) => (
-            <span
+            <Link
               key={tag}
-              className="text-sm px-3 py-1 rounded-full bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+              href={`/tags/${tagToSlug(tag)}`}
+              className="text-sm px-3 py-1 rounded-full bg-[var(--color-accent)]/10 text-[var(--color-accent)] hover:bg-[var(--color-accent)]/20 transition-colors"
             >
               {tag}
-            </span>
+            </Link>
           ))}
         </div>
 
@@ -173,10 +173,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </main>
-
-      <div className="relative">
-        <ContactFooter />
-      </div>
     </div>
   );
 }
