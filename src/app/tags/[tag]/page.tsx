@@ -14,8 +14,13 @@ function getTagFromSlug(slug: string): string | undefined {
   return tags.find((tag) => tagToSlug(tag) === slug);
 }
 
-export function generateMetadata({ params }: { params: { tag: string } }) {
-  const tag = getTagFromSlug(params.tag);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ tag: string }>;
+}) {
+  const { tag: tagSlug } = await params;
+  const tag = getTagFromSlug(tagSlug);
   if (!tag) {
     return { title: "Tag Not Found" };
   }
@@ -25,8 +30,13 @@ export function generateMetadata({ params }: { params: { tag: string } }) {
   };
 }
 
-export default function TagPage({ params }: { params: { tag: string } }) {
-  const tag = getTagFromSlug(params.tag);
+export default async function TagPage({
+  params,
+}: {
+  params: Promise<{ tag: string }>;
+}) {
+  const { tag: tagSlug } = await params;
+  const tag = getTagFromSlug(tagSlug);
 
   if (!tag) {
     notFound();
