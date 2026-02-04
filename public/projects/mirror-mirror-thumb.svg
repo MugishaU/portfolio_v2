@@ -1,6 +1,0 @@
-<svg width="640" height="360" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
-  <rect width="640" height="360" fill="#0a192e"/>
-  <rect x="20" y="20" width="600" height="320" rx="8" fill="#112240" stroke="#8892b0" stroke-opacity="0.2"/>
-  <text x="320" y="170" text-anchor="middle" fill="#ccd7f5" font-family="sans-serif" font-size="28" font-weight="bold">Mirror Mirror Play</text>
-  <text x="320" y="210" text-anchor="middle" fill="#8892b0" font-family="sans-serif" font-size="16">Theatre Production</text>
-</svg>
