@@ -33,6 +33,17 @@ export const projects: Project[] = [
     websiteUrl: "https://www.amosonchiri.com",
     tags: ["WordPress", "Web Design"],
   },
+  {
+    slug: "mirror-mirror-play",
+    title: "Mirror Mirror Play",
+    shortDescription: "Theatre production",
+    description:
+      "A promotional website for Mirror Mirror, a theatre production. Built from scratch using HTML and CSS, featuring show information, cast details, and performance dates. A clean, focused design that serves the production's promotional needs.",
+    thumbnail: "/projects/mirror-mirror-thumb.svg",
+    image: "/projects/mirror-mirror.svg",
+    websiteUrl: "https://www.mirrormirrorplay.com",
+    tags: ["HTML/CSS", "Web Design"],
+  },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {
