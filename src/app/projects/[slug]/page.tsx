@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import ProjectImages from "@/components/ProjectImages";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects, getProjectBySlug, tagToSlug } from "@/data/projects";
@@ -96,26 +97,11 @@ export default async function ProjectPage({
         </div>
 
         {/* Project Images */}
-        <div className="flex gap-4 mb-6">
-          {/* Desktop Screenshot */}
-          <div className="flex-1 rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
-            <img
-              src={project.image}
-              alt={`${project.title} - Desktop`}
-              className="w-full h-auto"
-            />
-          </div>
-          {/* Mobile Screenshot - hidden on mobile, same height as desktop */}
-          {project.mobileImage && (
-            <div className="hidden md:block shrink-0 rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
-              <img
-                src={project.mobileImage}
-                alt={`${project.title} - Mobile`}
-                className="h-full w-auto"
-              />
-            </div>
-          )}
-        </div>
+        <ProjectImages
+          image={project.image}
+          mobileImage={project.mobileImage}
+          title={project.title}
+        />
 
         {/* Description */}
         <div className="mb-8">
