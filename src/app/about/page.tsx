@@ -236,7 +236,7 @@ export default function AboutPage() {
                                 {role.dateRange}
                               </span>
                             </div>
-                            <ul className='space-y-3'>
+                            <ul className='space-y-4'>
                               {role.bullets.map((bullet, bulletIndex) => (
                                 <li
                                   key={bulletIndex}

@@ -27,7 +27,7 @@ export default function ProjectsPage() {
           Projects
         </h1>
 
-        <p className="text-[var(--color-muted)] text-center mb-10 max-w-2xl mx-auto">
+        <p className="text-[var(--color-foreground)] text-center mb-10 max-w-2xl mx-auto">
           A selection of client websites I&apos;ve designed and built.
         </p>
 
