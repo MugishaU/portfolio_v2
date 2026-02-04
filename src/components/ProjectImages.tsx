@@ -29,7 +29,7 @@ export default function ProjectImages({
   }, []);
 
   return (
-    <div className="flex gap-4 mb-6">
+    <div className="flex gap-4 mb-6 items-start">
       {/* Desktop Screenshot */}
       <div className="flex-1 rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
         <img
