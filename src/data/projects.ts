@@ -15,7 +15,7 @@ export const projects: Project[] = [
   {
     slug: "7styles",
     title: "7 Styles",
-    shortDescription: "Hairdresser & wig retailer",
+    shortDescription: "Salon and hair products",
     description:
       "A WordPress website built for 7 Styles, a London-based barbershop. The site showcases their services, team, and allows customers to book appointments. Features a clean, modern design with mobile responsiveness and integration with booking systems.",
     thumbnail: "/projects/7-styles-desktop.jpeg",

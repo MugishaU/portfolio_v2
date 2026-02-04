@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Link from "next/link";
-import { projects, tagToSlug } from "@/data/projects";
+import { projects } from "@/data/projects";
 
 export default function ProjectsPage() {
   return (
@@ -32,7 +32,7 @@ export default function ProjectsPage() {
         </p>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {projects.map((project) => (
             <Link
               key={project.slug}
@@ -41,7 +41,7 @@ export default function ProjectsPage() {
             >
               <article className="bg-[#112240]/50 rounded-lg overflow-hidden border border-[var(--color-muted)]/20 hover:border-[var(--color-accent)]/50 transition-all duration-300 hover:-translate-y-1">
                 {/* Thumbnail */}
-                <div className="aspect-video bg-[#0a192e] overflow-hidden">
+                <div className="aspect-[16/9] bg-[#0a192e] overflow-hidden">
                   <img
                     src={project.thumbnail}
                     alt={project.title}
@@ -50,22 +50,21 @@ export default function ProjectsPage() {
                 </div>
 
                 {/* Content */}
-                <div className="p-4">
-                  <h2 className="text-lg font-semibold text-[var(--color-foreground)] group-hover:text-[var(--color-accent)] transition-colors">
+                <div className="p-5">
+                  <h2 className="text-xl font-semibold text-[var(--color-foreground)] group-hover:text-[var(--color-accent)] transition-colors">
                     {project.title}
                   </h2>
                   <p className="text-sm text-[var(--color-muted)] mt-1">
                     {project.shortDescription}
                   </p>
-                  <div className="flex flex-wrap gap-2 mt-2">
+                  <div className="flex flex-wrap gap-2 mt-3">
                     {project.tags.slice(0, 3).map((tag) => (
-                      <Link
+                      <span
                         key={tag}
-                        href={`/tags/${tagToSlug(tag)}`}
-                        className="text-xs px-2 py-1 rounded bg-[var(--color-accent)]/10 text-[var(--color-accent)] hover:bg-[var(--color-accent)]/20 transition-colors"
+                        className="text-xs px-2 py-1 rounded bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
                       >
                         {tag}
-                      </Link>
+                      </span>
                     ))}
                   </div>
                 </div>
