@@ -18,7 +18,7 @@ export default function ProjectsPage() {
 
       <Header />
 
-      <main className="relative flex-1 flex flex-col px-6 md:px-12 pt-8 md:pt-12 pb-2 max-w-5xl mx-auto w-full">
+      <main className="relative flex-1 flex flex-col px-6 md:px-12 pt-8 md:pt-12 pb-2 max-w-7xl mx-auto w-full">
         {/* Title */}
         <h1
           className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-foreground)] mb-4 uppercase text-center"
@@ -32,7 +32,7 @@ export default function ProjectsPage() {
         </p>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {projects.map((project) => (
             <Link
               key={project.slug}

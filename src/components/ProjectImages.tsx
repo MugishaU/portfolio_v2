@@ -13,15 +13,13 @@ export default function ProjectImages({
   mobileImage,
   title,
 }: ProjectImagesProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const desktopImgRef = useRef<HTMLImageElement>(null);
   const [imageHeight, setImageHeight] = useState<number | null>(null);
 
   useEffect(() => {
     const updateHeight = () => {
-      if (containerRef.current) {
-        // Calculate height based on container width and 16:9 aspect ratio
-        const width = containerRef.current.offsetWidth;
-        setImageHeight(width * (9 / 16));
+      if (desktopImgRef.current && desktopImgRef.current.complete) {
+        setImageHeight(desktopImgRef.current.offsetHeight);
       }
     };
 
@@ -33,15 +31,17 @@ export default function ProjectImages({
   return (
     <div className="flex gap-4 mb-6 items-start">
       {/* Desktop Screenshot */}
-      <div
-        ref={containerRef}
-        className="flex-1 rounded-lg overflow-hidden border border-[var(--color-muted)]/20"
-        style={imageHeight ? { height: imageHeight } : undefined}
-      >
+      <div className="flex-1 rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
         <img
+          ref={desktopImgRef}
           src={image}
           alt={`${title} - Desktop`}
-          className="w-full h-full object-cover"
+          className="w-full h-auto block"
+          onLoad={() => {
+            if (desktopImgRef.current) {
+              setImageHeight(desktopImgRef.current.offsetHeight);
+            }
+          }}
         />
       </div>
       {/* Mobile Screenshot - hidden on mobile, same height as desktop */}
