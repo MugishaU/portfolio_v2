@@ -13,50 +13,48 @@ export default function ProjectImages({
   mobileImage,
   title,
 }: ProjectImagesProps) {
-  const desktopImgRef = useRef<HTMLImageElement>(null);
-  const [imageHeight, setImageHeight] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number>(400);
 
   useEffect(() => {
-    const updateHeight = () => {
-      if (desktopImgRef.current && desktopImgRef.current.complete) {
-        setImageHeight(desktopImgRef.current.offsetHeight);
+    const calculateHeight = () => {
+      if (containerRef.current) {
+        // Height based on container width * 0.4 (reasonable proportion)
+        const width = containerRef.current.offsetWidth;
+        setHeight(Math.min(width * 0.45, 500)); // Cap at 500px
       }
     };
 
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
+    calculateHeight();
+    window.addEventListener("resize", calculateHeight);
+    return () => window.removeEventListener("resize", calculateHeight);
   }, []);
 
   return (
-    <div className="flex gap-4 mb-6 items-start">
-      {/* Desktop Screenshot */}
-      <div className="flex-1 rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
-        <img
-          ref={desktopImgRef}
-          src={image}
-          alt={`${title} - Desktop`}
-          className="w-full h-auto block"
-          onLoad={() => {
-            if (desktopImgRef.current) {
-              setImageHeight(desktopImgRef.current.offsetHeight);
-            }
-          }}
-        />
-      </div>
-      {/* Mobile Screenshot - hidden on mobile, same height as desktop */}
-      {mobileImage && imageHeight && (
-        <div
-          className="hidden md:block shrink-0 rounded-lg overflow-hidden border border-[var(--color-muted)]/20"
-          style={{ height: imageHeight }}
-        >
+    <div ref={containerRef} className="mb-6">
+      <div
+        className="flex gap-4 items-center"
+        style={{ height }}
+      >
+        {/* Desktop Screenshot */}
+        <div className="h-full rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
           <img
-            src={mobileImage}
-            alt={`${title} - Mobile`}
+            src={image}
+            alt={`${title} - Desktop`}
             className="h-full w-auto"
           />
         </div>
-      )}
+        {/* Mobile Screenshot - hidden on mobile */}
+        {mobileImage && (
+          <div className="hidden md:block h-full rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
+            <img
+              src={mobileImage}
+              alt={`${title} - Mobile`}
+              className="h-full w-auto"
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
