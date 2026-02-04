@@ -102,7 +102,7 @@ export default function ContactPage() {
         >
           Contact Me
         </h1>
-        <p className="text-[var(--color-muted)] mb-6 text-center max-w-md">
+        <p className="text-[var(--color-foreground)] mb-6 text-center max-w-md">
           Have a question or want to work together? Send me a message.
         </p>
 
@@ -208,7 +208,7 @@ export default function ContactPage() {
 
         {/* Direct Contact Info */}
         <div className="mt-8 flex flex-col items-center gap-3">
-          <p className="text-[var(--color-muted)] text-sm">Or reach out directly:</p>
+          <p className="text-[var(--color-muted)] text-sm">Or find me here:</p>
           <div className="flex gap-6">
             <a
               href="mailto:me@mugisha.io"
