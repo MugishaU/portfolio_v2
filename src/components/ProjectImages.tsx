@@ -13,13 +13,15 @@ export default function ProjectImages({
   mobileImage,
   title,
 }: ProjectImagesProps) {
-  const desktopRef = useRef<HTMLImageElement>(null);
-  const [desktopHeight, setDesktopHeight] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [imageHeight, setImageHeight] = useState<number | null>(null);
 
   useEffect(() => {
     const updateHeight = () => {
-      if (desktopRef.current) {
-        setDesktopHeight(desktopRef.current.offsetHeight);
+      if (containerRef.current) {
+        // Calculate height based on container width and 16:9 aspect ratio
+        const width = containerRef.current.offsetWidth;
+        setImageHeight(width * (9 / 16));
       }
     };
 
@@ -31,24 +33,22 @@ export default function ProjectImages({
   return (
     <div className="flex gap-4 mb-6 items-start">
       {/* Desktop Screenshot */}
-      <div className="flex-1 rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
+      <div
+        ref={containerRef}
+        className="flex-1 rounded-lg overflow-hidden border border-[var(--color-muted)]/20"
+        style={imageHeight ? { height: imageHeight } : undefined}
+      >
         <img
-          ref={desktopRef}
           src={image}
           alt={`${title} - Desktop`}
-          className="w-full h-auto block"
-          onLoad={() => {
-            if (desktopRef.current) {
-              setDesktopHeight(desktopRef.current.offsetHeight);
-            }
-          }}
+          className="w-full h-full object-cover"
         />
       </div>
       {/* Mobile Screenshot - hidden on mobile, same height as desktop */}
-      {mobileImage && desktopHeight && (
+      {mobileImage && imageHeight && (
         <div
           className="hidden md:block shrink-0 rounded-lg overflow-hidden border border-[var(--color-muted)]/20"
-          style={{ height: desktopHeight }}
+          style={{ height: imageHeight }}
         >
           <img
             src={mobileImage}
