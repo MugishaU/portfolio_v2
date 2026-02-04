@@ -19,9 +19,8 @@ export default function ProjectImages({
   useEffect(() => {
     const calculateHeight = () => {
       if (containerRef.current) {
-        // Height based on container width * 0.4 (reasonable proportion)
         const width = containerRef.current.offsetWidth;
-        setHeight(Math.min(width * 0.45, 500)); // Cap at 500px
+        setHeight(Math.min(width * 0.45, 500));
       }
     };
 
@@ -32,11 +31,22 @@ export default function ProjectImages({
 
   return (
     <div ref={containerRef} className="mb-6">
+      {/* Mobile layout - just desktop image, full width, centered */}
+      <div className="md:hidden">
+        <div className="rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
+          <img
+            src={image}
+            alt={`${title} - Desktop`}
+            className="w-full h-auto"
+          />
+        </div>
+      </div>
+
+      {/* Desktop layout - both images side by side */}
       <div
-        className="flex gap-4 items-center"
+        className="hidden md:flex gap-4 items-center justify-center"
         style={{ height }}
       >
-        {/* Desktop Screenshot */}
         <div className="h-full rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
           <img
             src={image}
@@ -44,9 +54,8 @@ export default function ProjectImages({
             className="h-full w-auto"
           />
         </div>
-        {/* Mobile Screenshot - hidden on mobile */}
         {mobileImage && (
-          <div className="hidden md:block h-full rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
+          <div className="h-full rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
             <img
               src={mobileImage}
               alt={`${title} - Mobile`}
