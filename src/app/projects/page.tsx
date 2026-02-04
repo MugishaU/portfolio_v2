@@ -28,8 +28,7 @@ export default function ProjectsPage() {
         </h1>
 
         <p className="text-[var(--color-muted)] text-center mb-10 max-w-2xl mx-auto">
-          A selection of projects I&apos;ve worked on, from client websites to
-          personal experiments.
+          A selection of client websites I&apos;ve designed and built.
         </p>
 
         {/* Projects Grid */}
@@ -55,6 +54,9 @@ export default function ProjectsPage() {
                   <h2 className="text-lg font-semibold text-[var(--color-foreground)] group-hover:text-[var(--color-accent)] transition-colors">
                     {project.title}
                   </h2>
+                  <p className="text-sm text-[var(--color-muted)] mt-1">
+                    {project.shortDescription}
+                  </p>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {project.tags.slice(0, 3).map((tag) => (
                       <Link

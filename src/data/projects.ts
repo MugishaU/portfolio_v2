@@ -1,6 +1,7 @@
 export type Project = {
   slug: string;
   title: string;
+  shortDescription: string;
   description: string;
   thumbnail: string;
   image: string;
@@ -13,6 +14,7 @@ export const projects: Project[] = [
   {
     slug: "7styles",
     title: "7 Styles",
+    shortDescription: "Hairdresser & wig retailer",
     description:
       "A WordPress website built for 7 Styles, a London-based barbershop. The site showcases their services, team, and allows customers to book appointments. Features a clean, modern design with mobile responsiveness and integration with booking systems.",
     thumbnail: "/projects/7styles-thumb.svg",
@@ -23,22 +25,13 @@ export const projects: Project[] = [
   {
     slug: "amos-onchiri",
     title: "Amos Onchiri",
+    shortDescription: "Life coach",
     description:
       "A portfolio website designed and built for Amos Onchiri, showcasing their professional work and achievements. The site features a clean, minimalist design with smooth animations and a focus on content presentation.",
     thumbnail: "/projects/amos-onchiri-thumb.svg",
     image: "/projects/amos-onchiri.svg",
     websiteUrl: "https://www.amosonchiri.com",
     tags: ["WordPress", "Web Design"],
-  },
-  {
-    slug: "twitter-bot",
-    title: "Twitter Bot",
-    description:
-      "A TypeScript-based Twitter bot that automates interactions on the platform. Built as a personal project to explore the Twitter API and automation techniques. Deployed using GitHub Actions for CI/CD, Terraform for infrastructure as code, and hosted on AWS.",
-    thumbnail: "/projects/twitter-bot-thumb.svg",
-    image: "/projects/twitter-bot.svg",
-    githubUrl: "https://github.com/MugishaU/twitter-bot",
-    tags: ["TypeScript", "GitHub Actions", "Terraform", "AWS"],
   },
 ];
 

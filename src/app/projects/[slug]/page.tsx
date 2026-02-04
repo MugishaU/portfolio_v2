@@ -52,11 +52,11 @@ export default async function ProjectPage({
 
       <Header />
 
-      <main className="relative flex-1 flex flex-col px-6 md:px-12 pt-8 md:pt-12 pb-2 max-w-4xl mx-auto w-full">
+      <main className="relative flex-1 flex flex-col px-6 md:px-12 pt-4 md:pt-6 pb-2 max-w-4xl mx-auto w-full">
         {/* Back Link */}
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors mb-6 group"
+          className="inline-flex items-center gap-2 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors mb-4 group"
         >
           <svg
             className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
@@ -76,14 +76,14 @@ export default async function ProjectPage({
 
         {/* Title */}
         <h1
-          className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--color-foreground)] mb-6"
+          className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--color-foreground)] mb-3"
           style={{ fontFamily: "var(--font-heading)" }}
         >
           {project.title}
         </h1>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="flex flex-wrap gap-2 mb-6">
           {project.tags.map((tag) => (
             <Link
               key={tag}
@@ -96,7 +96,7 @@ export default async function ProjectPage({
         </div>
 
         {/* Project Image */}
-        <div className="rounded-lg overflow-hidden border border-[var(--color-muted)]/20 mb-8">
+        <div className="rounded-lg overflow-hidden border border-[var(--color-muted)]/20 mb-6">
           <img
             src={project.image}
             alt={project.title}
