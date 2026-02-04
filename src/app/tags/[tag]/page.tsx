@@ -43,7 +43,7 @@ export default async function TagPage({
   }
 
   const filteredProjects = projects.filter((project) =>
-    project.tags.includes(tag)
+    project.tags.includes(tag),
   );
 
   return (
@@ -61,7 +61,7 @@ export default async function TagPage({
 
       <Header />
 
-      <main className="relative flex-1 flex flex-col px-6 md:px-12 pt-8 md:pt-12 pb-8 max-w-5xl mx-auto w-full">
+      <main className="relative flex-1 flex flex-col px-6 md:px-12 pt-8 md:pt-12 pb-8 max-w-7xl mx-auto w-full">
         {/* Back Link */}
         <Link
           href="/projects"
@@ -117,11 +117,14 @@ export default async function TagPage({
                 </div>
 
                 {/* Content */}
-                <div className="p-4">
-                  <h2 className="text-lg font-semibold text-[var(--color-foreground)] group-hover:text-[var(--color-accent)] transition-colors">
+                <div className="p-5">
+                  <h2 className="text-xl font-semibold text-[var(--color-foreground)] group-hover:text-[var(--color-accent)] transition-colors">
                     {project.title}
                   </h2>
-                  <div className="flex flex-wrap gap-2 mt-2">
+                  <p className="text-sm text-[var(--color-muted)] mt-1">
+                    {project.shortDescription}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-3">
                     {project.tags.slice(0, 3).map((t) => (
                       <span
                         key={t}

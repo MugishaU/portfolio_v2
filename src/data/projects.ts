@@ -15,9 +15,9 @@ export const projects: Project[] = [
   {
     slug: "7styles",
     title: "7 Styles",
-    shortDescription: "Salon and hair products",
+    shortDescription: "Hair salon & products",
     description:
-      "A WordPress website built for 7 Styles, a London-based barbershop. The site showcases their services, team, and allows customers to book appointments. Features a clean, modern design with mobile responsiveness and integration with booking systems.",
+      "A website for 7 Styles, a UK-based hair salon and product retailer. Customers can shop for hair products or book styling appointments online.",
     thumbnail: "/projects/7-styles-desktop.jpeg",
     image: "/projects/7-styles-desktop.jpeg",
     mobileImage: "/projects/7-styles-mobile.jpeg",
@@ -27,9 +27,9 @@ export const projects: Project[] = [
   {
     slug: "amos-onchiri",
     title: "Amos Onchiri",
-    shortDescription: "Life coach",
+    shortDescription: "Life & relationship coach",
     description:
-      "A portfolio website designed and built for Amos Onchiri, showcasing their professional work and achievements. The site features a clean, minimalist design with smooth animations and a focus on content presentation.",
+      "A website for Amos Onchiri, a life coach helping clients find clarity, build confidence, and strengthen relationships. Visitors can explore his coaching services, read his blog, and book sessions with him.",
     thumbnail: "/projects/amos-onchiri-desktop.jpeg",
     image: "/projects/amos-onchiri-desktop.jpeg",
     mobileImage: "/projects/amos-onchiri-mobile.jpeg",
@@ -41,7 +41,7 @@ export const projects: Project[] = [
     title: "Mirror Mirror Play",
     shortDescription: "Theatre production",
     description:
-      "A promotional website for Mirror Mirror, a theatre production. Built with React, featuring show information, cast details, and performance dates. A clean, focused design that serves the production's promotional needs.",
+      "A promotional website for Mirror Mirror, a theatre production. Everything audiences needed to know about the show lived here, from the story and cast to tickets and directions.",
     thumbnail: "/projects/mirror-mirror-desktop.jpeg",
     image: "/projects/mirror-mirror-desktop.jpeg",
     mobileImage: "/projects/mirror-mirror-mobile.jpeg",
