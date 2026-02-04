@@ -41,7 +41,7 @@ export const projects: Project[] = [
     title: 'Mirror Mirror',
     shortDescription: 'Theatre production',
     description:
-      'A promotional website for Mirror Mirror, a theatre production. Everything audiences needed to know about the show lived here, from the story and cast to tickets and directions.',
+      'A simple promotional website for Mirror Mirror, a theatre production. Everything audiences needed to know about the show lived here, from the story and cast to tickets and directions.',
     thumbnail: '/projects/mirror-mirror-desktop.jpeg',
     image: '/projects/mirror-mirror-desktop.jpeg',
     mobileImage: '/projects/mirror-mirror-mobile.jpeg',
