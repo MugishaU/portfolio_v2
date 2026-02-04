@@ -95,13 +95,26 @@ export default async function ProjectPage({
           ))}
         </div>
 
-        {/* Project Image */}
-        <div className="rounded-lg overflow-hidden border border-[var(--color-muted)]/20 mb-6">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-auto"
-          />
+        {/* Project Images */}
+        <div className="flex gap-4 mb-6 items-start">
+          {/* Desktop Screenshot */}
+          <div className={`rounded-lg overflow-hidden border border-[var(--color-muted)]/20 ${project.mobileImage ? "md:flex-1" : "w-full"}`}>
+            <img
+              src={project.image}
+              alt={`${project.title} - Desktop`}
+              className="w-full h-auto"
+            />
+          </div>
+          {/* Mobile Screenshot - hidden on mobile */}
+          {project.mobileImage && (
+            <div className="hidden md:block w-[140px] shrink-0 rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
+              <img
+                src={project.mobileImage}
+                alt={`${project.title} - Mobile`}
+                className="w-full h-auto"
+              />
+            </div>
+          )}
         </div>
 
         {/* Description */}

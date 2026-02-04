@@ -5,6 +5,7 @@ export type Project = {
   description: string;
   thumbnail: string;
   image: string;
+  mobileImage?: string;
   websiteUrl?: string;
   githubUrl?: string;
   tags: string[];
@@ -19,6 +20,7 @@ export const projects: Project[] = [
       "A WordPress website built for 7 Styles, a London-based barbershop. The site showcases their services, team, and allows customers to book appointments. Features a clean, modern design with mobile responsiveness and integration with booking systems.",
     thumbnail: "/projects/7styles-thumb.svg",
     image: "/projects/7styles.svg",
+    mobileImage: "/projects/7styles-mobile.svg",
     websiteUrl: "https://www.7styles.co.uk",
     tags: ["WordPress", "Web Design"],
   },
@@ -30,6 +32,7 @@ export const projects: Project[] = [
       "A portfolio website designed and built for Amos Onchiri, showcasing their professional work and achievements. The site features a clean, minimalist design with smooth animations and a focus on content presentation.",
     thumbnail: "/projects/amos-onchiri-thumb.svg",
     image: "/projects/amos-onchiri.svg",
+    mobileImage: "/projects/amos-onchiri-mobile.svg",
     websiteUrl: "https://www.amosonchiri.com",
     tags: ["WordPress", "Web Design"],
   },
@@ -41,6 +44,7 @@ export const projects: Project[] = [
       "A promotional website for Mirror Mirror, a theatre production. Built with React, featuring show information, cast details, and performance dates. A clean, focused design that serves the production's promotional needs.",
     thumbnail: "/projects/mirror-mirror-thumb.svg",
     image: "/projects/mirror-mirror.svg",
+    mobileImage: "/projects/mirror-mirror-mobile.svg",
     websiteUrl: "https://www.mirrormirrorplay.com",
     tags: ["React", "Web Design"],
   },

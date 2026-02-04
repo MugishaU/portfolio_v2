@@ -1,0 +1,6 @@
+<svg width="375" height="812" viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg">
+  <rect width="375" height="812" fill="#0a192e"/>
+  <rect x="15" y="15" width="345" height="782" rx="8" fill="#112240" stroke="#8892b0" stroke-opacity="0.2"/>
+  <text x="187" y="390" text-anchor="middle" fill="#ccd7f5" font-family="sans-serif" font-size="24" font-weight="bold">7 Styles</text>
+  <text x="187" y="430" text-anchor="middle" fill="#8892b0" font-family="sans-serif" font-size="14">Mobile View</text>
+</svg>
