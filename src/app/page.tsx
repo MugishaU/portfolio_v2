@@ -101,7 +101,7 @@ export default function Home() {
         </p>
 
         <p className="mt-8 max-w-lg text-[var(--color-muted)] leading-relaxed text-base md:text-lg animate-fade-up animate-delay-200">
-          <span className="text-[var(--color-accent-secondary)] font-medium">(n.)</span>{" "}
+          <span className="text-[var(--color-accent)] font-medium">(n.)</span>{" "}
           a software engineer who specializes in building secure & scalable back-end solutions.
         </p>
 
