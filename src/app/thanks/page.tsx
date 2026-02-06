@@ -1,21 +1,21 @@
-import Link from "next/link";
+import Header from "@/components/Header";
 
 const names = [
   { name: "Nadin Bart-Williams", accent: true },
   { name: "Cenone Collins", accent: false },
-  { name: "Monique Day", accent: true },
-  { name: "Quinnyne Henry-Fender", accent: false },
-  { name: "Dashe Illuyemi", accent: true },
-  { name: "Lydia Johnson", accent: false },
-  { name: "David Kasali", accent: true },
-  { name: "Mohsin Malik", accent: false },
-  { name: "Caleb Mapoma", accent: true },
-  { name: "Naomi Mapoma", accent: false },
-  { name: "Jesse Ngizwenayo", accent: true },
-  { name: "Leanne Oyeyemi", accent: false },
-  { name: "Janie Shepherd", accent: true },
-  { name: "Kanon Tsuda", accent: false },
-  { name: "Chinazam Ukata", accent: true },
+  { name: "Quinnyne Henry-Fender", accent: true },
+  { name: "Dashe Illuyemi", accent: false },
+  { name: "Lydia Johnson", accent: true },
+  { name: "David Kasali", accent: false },
+  { name: "Mohsin Malik", accent: true },
+  { name: "Caleb Mapoma", accent: false },
+  { name: "Naomi Mapoma", accent: true },
+  { name: "Jesse Ngizwenayo", accent: false },
+  { name: "Leanne Oyeyemi", accent: true },
+  { name: "Janie Shepherd", accent: false },
+  { name: "Kanon Tsuda", accent: true },
+  { name: "Chinazam Ukata", accent: false },
+  { name: "Monique Uwiragiye", accent: true },
 ];
 
 export default function ThanksPage() {
@@ -32,42 +32,7 @@ export default function ThanksPage() {
         }}
       />
 
-      {/* Top nav */}
-      <nav className="relative w-full px-6 md:px-12 py-6 flex justify-between items-center z-10">
-        <Link
-          href="/"
-          className="text-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
-          aria-label="Home"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg>
-        </Link>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="var(--color-accent)"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polyline points="20 6 9 17 4 12" />
-        </svg>
-      </nav>
+      <Header />
 
       {/* Content */}
       <main className="relative flex-1 flex flex-col items-center px-6 md:px-12 pb-12">
