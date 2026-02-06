@@ -93,12 +93,13 @@ export default function Home() {
           MUGISHA
         </h1>
 
-        <p
-          className="mt-4 text-lg md:text-xl text-[var(--color-muted)] font-light tracking-widest animate-fade-up animate-delay-100"
-          style={{ fontFamily: "var(--font-pronunciation)" }}
+        <Link
+          href="/thanks"
+          className="mt-4 text-lg md:text-xl text-[var(--color-muted)] font-light tracking-widest animate-fade-up animate-delay-100 no-underline"
+          style={{ fontFamily: "var(--font-pronunciation)", cursor: "default" }}
         >
           /mu · gi · ʃa/
-        </p>
+        </Link>
 
         <p className="mt-8 max-w-lg text-[var(--color-muted)] leading-relaxed text-base md:text-lg animate-fade-up animate-delay-200">
           <span className="text-[var(--color-accent)] font-medium">(n.)</span>{" "}
