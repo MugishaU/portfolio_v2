@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 
 const names = [
   { name: "Nadim Bart-Williams", accent: true },
-  { name: "Cenone Collins", accent: false },
+  { name: "Cemone Collins", accent: false },
   { name: "Quinnyne Henry-Fender", accent: true },
   { name: "Dashe Illuyemi", accent: false },
   { name: "Lydia Johnson", accent: true },
