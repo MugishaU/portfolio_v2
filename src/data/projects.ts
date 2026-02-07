@@ -22,7 +22,7 @@ export const projects: Project[] = [
     image: '/projects/7-styles-desktop.jpeg',
     mobileImage: '/projects/7-styles-mobile.jpeg',
     websiteUrl: 'https://www.7styles.co.uk',
-    tags: ['WordPress', 'Web Design'],
+    tags: ['WordPress'],
   },
   {
     slug: 'amos-onchiri',
@@ -34,7 +34,7 @@ export const projects: Project[] = [
     image: '/projects/amos-onchiri-desktop.jpeg',
     mobileImage: '/projects/amos-onchiri-mobile.jpeg',
     websiteUrl: 'https://www.amosonchiri.com',
-    tags: ['WordPress', 'Web Design'],
+    tags: ['WordPress'],
   },
   {
     slug: 'mirror-mirror',
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     image: '/projects/mirror-mirror-desktop.jpeg',
     mobileImage: '/projects/mirror-mirror-mobile.jpeg',
     websiteUrl: 'https://www.mirrormirrorplay.com',
-    tags: ['React', 'Web Design'],
+    tags: ['React'],
   },
 ];
 
