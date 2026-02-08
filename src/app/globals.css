@@ -23,7 +23,7 @@
   --font-pronunciation: "Poppins", sans-serif;
   --color-background: #0a192e;
   --color-foreground: #ccd7f5;
-  --color-accent: #feda69;
+  --color-accent: #E8B824;
   --color-accent-secondary: #64ffda;
   --color-muted: #a8b2d1;
 }
@@ -121,7 +121,7 @@ body {
 }
 
 .glow-hover:hover {
-  box-shadow: 0 0 20px rgba(254, 218, 105, 0.3);
+  box-shadow: 0 0 20px rgba(232, 184, 36, 0.3);
   transform: translateY(-2px);
 }
 
