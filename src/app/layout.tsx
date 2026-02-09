@@ -5,8 +5,8 @@ export const metadata: Metadata = {
   title: "Mugisha Uwiragiye | Portfolio",
   description: "Software Engineer & Designer",
   icons: {
-    icon: "/icons/favicon-192x192.png",
-    apple: "/icons/apple-icon-180x180.png",
+    icon: "/icons/favicon.png",
+    apple: "/icons/favicon.png",
   },
 };
 

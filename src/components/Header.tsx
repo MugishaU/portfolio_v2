@@ -10,6 +10,21 @@ const navLinks = [
   { href: "/contact", label: "CONTACT ME" },
 ];
 
+function Logo({ className }: { className?: string }) {
+  return (
+    <svg
+      width="72"
+      height="72"
+      viewBox="0 0 512 512"
+      fill="currentColor"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M180.431 289.156L262.4 150H301.724V267C301.724 288.6 306.324 304.3 315.523 314.1C324.923 323.9 338.123 328.8 355.123 328.8C372.123 328.8 385.224 323.9 394.424 314.1C403.624 304.3 408.224 288.6 408.224 267V150H446.623V268.5C446.623 299.1 438.423 322.5 422.023 338.7C405.823 354.9 383.423 363 354.823 363C326.023 363 303.423 354.9 287.023 338.7C270.823 322.5 262.724 299.1 262.724 268.5V212.364L188.6 336H171.2L102.2 222.681V360H65V150H97.0996L180.431 289.156Z" />
+    </svg>
+  );
+}
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -17,14 +32,13 @@ export default function Header() {
   return (
     <>
       {/* Navigation */}
-      <nav className="sticky top-0 w-full px-6 md:px-12 py-6 flex justify-between items-center z-50 bg-[var(--color-background)]/80 backdrop-blur-sm">
+      <nav className="sticky top-0 w-full px-6 md:px-12 py-3 flex justify-between items-center z-50 bg-[var(--color-background)]/80 backdrop-blur-sm">
         {/* Logo/Home link */}
         <Link
           href="/"
-          className="text-lg font-bold text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
-          style={{ fontFamily: "var(--font-heading)" }}
+          className="text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
         >
-          MUGISHA
+          <Logo />
         </Link>
 
         {/* Desktop Nav */}
