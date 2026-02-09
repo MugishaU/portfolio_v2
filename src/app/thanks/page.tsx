@@ -35,7 +35,7 @@ export default function ThanksPage() {
       <Header />
 
       {/* Content */}
-      <main className="relative flex-1 flex flex-col items-center px-6 md:px-12 pb-12">
+      <main className="relative flex-1 flex flex-col items-center px-6 md:px-12 pt-8 md:pt-12 pb-12">
         <h1
           className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-foreground)] mb-4 animate-fade-up"
           style={{ fontFamily: "var(--font-heading)" }}
