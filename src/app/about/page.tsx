@@ -30,7 +30,7 @@ const experience: TimelineEntry[] = [
         dateRange: 'Jan 2026 - Present',
         bullets: [
           'Led backend development for multiple core features on a new initiative, helping shape the architecture and take systems into production.',
-          'Built a production deployment pipeline with GitHub Actions, Terraform, and Kubernetes (Helm), with Slack and Linear integrations to give non-technical stakeholders better visibility and reduce engineering overhead.',
+          'Built a production deployment pipeline with GitHub Actions, Terraform, and Kubernetes, with Slack and Linear integrations to give non-technical stakeholders better visibility and reduce engineering overhead.',
         ],
       },
       {
