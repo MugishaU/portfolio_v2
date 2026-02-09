@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "/about", label: "ABOUT ME" },
@@ -11,6 +11,10 @@ const navLinks = [
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.setItem("home-visited", "true");
+  }, []);
 
   return (
     <div className="h-dvh flex flex-col relative overflow-hidden">

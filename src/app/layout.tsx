@@ -17,7 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if(sessionStorage.getItem('home-visited')){document.documentElement.classList.add('home-visited')}`,
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

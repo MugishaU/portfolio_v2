@@ -101,6 +101,21 @@ body {
   opacity: 0;
 }
 
+/* Skip entrance animations on return visits within the same session */
+.home-visited .animate-fade-up,
+.home-visited .animate-fade-in {
+  animation: none !important;
+}
+
+.home-visited .animate-fade-up,
+.home-visited .animate-fade-in,
+.home-visited .animate-delay-100,
+.home-visited .animate-delay-200,
+.home-visited .animate-delay-300,
+.home-visited .animate-delay-400 {
+  opacity: 1 !important;
+}
+
 /* Gradient text */
 .gradient-text {
   background: linear-gradient(
