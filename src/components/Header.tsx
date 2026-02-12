@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "/about", label: "ABOUT ME" },
@@ -27,7 +27,12 @@ function Logo({ className }: { className?: string }) {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuMounted, setMenuMounted] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMenuMounted(true);
+  }, []);
 
   return (
     <>
@@ -69,36 +74,38 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile Menu Overlay */}
-      <div
-        onClick={() => setMenuOpen(false)}
-        className={`fixed inset-0 z-40 bg-[var(--color-background)] flex flex-col transition-all duration-500 ${
-          menuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
-        }`}
-      >
-        {/* Menu Links */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-10">
-          {navLinks.map((link, index) => (
-            <div
-              key={link.label}
-              className={`transform transition-all duration-500 ${
-                menuOpen
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-4 opacity-0"
-              }`}
-              style={{ transitionDelay: menuOpen ? `${index * 100}ms` : "0ms" }}
-            >
-              <Link
-                href={link.href}
-                onClick={(e) => e.stopPropagation()}
-                className="text-[1.6rem] font-normal text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors uppercase"
+      {/* Mobile Menu Overlay — only mounted after hydration to prevent FOUC */}
+      {menuMounted && (
+        <div
+          onClick={() => setMenuOpen(false)}
+          className={`fixed inset-0 z-40 bg-[var(--color-background)] flex flex-col transition-all duration-500 ${
+            menuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+          }`}
+        >
+          {/* Menu Links */}
+          <div className="flex-1 flex flex-col items-center justify-center gap-10">
+            {navLinks.map((link, index) => (
+              <div
+                key={link.label}
+                className={`transform transition-all duration-500 ${
+                  menuOpen
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-4 opacity-0"
+                }`}
+                style={{ transitionDelay: menuOpen ? `${index * 100}ms` : "0ms" }}
               >
-                {link.label}
-              </Link>
-            </div>
-          ))}
+                <Link
+                  href={link.href}
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-[1.6rem] font-normal text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors uppercase"
+                >
+                  {link.label}
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
