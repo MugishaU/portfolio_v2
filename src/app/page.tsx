@@ -17,6 +17,10 @@ export default function Home() {
     setMenuMounted(true);
   }, []);
 
+  useEffect(() => {
+    sessionStorage.setItem("home-visited", "true");
+  }, []);
+
   return (
     <div className="h-dvh flex flex-col relative overflow-hidden">
       {/* Subtle background gradient */}
