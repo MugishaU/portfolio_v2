@@ -3,7 +3,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Mugisha Uwiragiye | Portfolio",
-  description: "Software Engineer & Designer",
+  description:
+    "Software engineer at Lapse. Backend systems and infrastructure.",
   icons: {
     icon: "/icons/favicon.png",
     apple: "/icons/favicon.png",
@@ -17,7 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

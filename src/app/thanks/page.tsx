@@ -21,21 +21,10 @@ const names = [
 export default function ThanksPage() {
   return (
     <div className="min-h-dvh flex flex-col relative">
-      {/* Background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-[var(--color-background)] via-[var(--color-background)] to-[#112240] pointer-events-none" />
-      <div
-        className="fixed inset-0 opacity-[0.02] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(var(--color-foreground) 1px, transparent 1px),
-                           linear-gradient(90deg, var(--color-foreground) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
-
       <Header />
 
       {/* Content */}
-      <main className="relative flex-1 flex flex-col items-center px-6 md:px-12 pt-8 md:pt-12 pb-12">
+      <main id="main-content" className="page-content">
         <h1
           className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-foreground)] mb-4 animate-fade-up"
           style={{ fontFamily: "var(--font-heading)" }}

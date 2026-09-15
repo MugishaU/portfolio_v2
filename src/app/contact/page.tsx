@@ -18,27 +18,34 @@ export default function ContactPage() {
     email: false,
     message: false,
   });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   useEffect(() => {
     setLoadTime(Date.now());
   }, []);
 
-  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isValidEmail = (email: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isValidName = (name: string) => name.trim().length >= 2;
-  const isValidMessage = (message: string) => message.trim().length >= 10 && message.length <= MAX_MESSAGE_LENGTH;
+  const isValidMessage = (message: string) =>
+    message.trim().length >= 10 && message.length <= MAX_MESSAGE_LENGTH;
 
   const getInputClass = (field: "name" | "email" | "message") => {
-    const base = "w-full px-4 py-3 bg-[var(--color-background)] border rounded text-[var(--color-foreground)] focus:outline-none transition-colors";
+    const base =
+      "w-full px-4 py-3 bg-[var(--color-background)] border rounded text-[var(--color-foreground)] focus:outline-none transition-colors";
 
     if (!touched[field]) {
       return `${base} border-[var(--color-muted)]/30 focus:border-[var(--color-accent)]`;
     }
 
-    let isValid = false;
-    if (field === "name") isValid = isValidName(formData.name);
-    if (field === "email") isValid = isValidEmail(formData.email);
-    if (field === "message") isValid = isValidMessage(formData.message);
+    const validators = {
+      name: isValidName,
+      email: isValidEmail,
+      message: isValidMessage,
+    };
+    const isValid = validators[field](formData[field]);
 
     return `${base} ${isValid ? "border-green-500" : "border-red-500"}`;
   };
@@ -51,7 +58,11 @@ export default function ContactPage() {
     e.preventDefault();
     setTouched({ name: true, email: true, message: true });
 
-    if (!isValidName(formData.name) || !isValidEmail(formData.email) || !isValidMessage(formData.message)) {
+    if (
+      !isValidName(formData.name) ||
+      !isValidEmail(formData.email) ||
+      !isValidMessage(formData.message)
+    ) {
       return;
     }
 
@@ -81,21 +92,10 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="h-dvh flex flex-col relative overflow-hidden">
-      {/* Background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-[var(--color-background)] via-[var(--color-background)] to-[#112240] pointer-events-none" />
-      <div
-        className="fixed inset-0 opacity-[0.02] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(var(--color-foreground) 1px, transparent 1px),
-                           linear-gradient(90deg, var(--color-foreground) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
-
+    <div className="min-h-dvh flex flex-col">
       <Header />
 
-      <main className="relative flex-1 flex flex-col items-center px-6 py-6 md:py-10 overflow-y-auto">
+      <main id="main-content" className="page-content contact-content">
         <h1
           className="text-4xl md:text-6xl font-bold tracking-tight text-[var(--color-foreground)] mb-6 uppercase"
           style={{ fontFamily: "var(--font-heading)" }}
@@ -120,47 +120,66 @@ export default function ContactPage() {
             className="absolute -left-[9999px] opacity-0 h-0 w-0"
           />
           <div>
-            <label htmlFor="name" className="block text-sm text-[var(--color-muted)] mb-2">
+            <label
+              htmlFor="name"
+              className="block text-sm text-[var(--color-muted)] mb-2"
+            >
               Name
             </label>
             <input
               type="text"
               id="name"
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
               onBlur={() => handleBlur("name")}
               className={getInputClass("name")}
               placeholder="Your name"
             />
             {touched.name && !isValidName(formData.name) && (
-              <p className="text-red-400 text-xs mt-1">Name must be at least 2 characters</p>
+              <p className="text-red-700 text-xs mt-1">
+                Name must be at least 2 characters
+              </p>
             )}
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm text-[var(--color-muted)] mb-2">
+            <label
+              htmlFor="email"
+              className="block text-sm text-[var(--color-muted)] mb-2"
+            >
               Email
             </label>
             <input
               type="email"
               id="email"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
               onBlur={() => handleBlur("email")}
               className={getInputClass("email")}
               placeholder="your@email.com"
             />
             {touched.email && !isValidEmail(formData.email) && (
-              <p className="text-red-400 text-xs mt-1">Please enter a valid email address</p>
+              <p className="text-red-700 text-xs mt-1">
+                Please enter a valid email address
+              </p>
             )}
           </div>
 
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label htmlFor="message" className="block text-sm text-[var(--color-muted)]">
+              <label
+                htmlFor="message"
+                className="block text-sm text-[var(--color-muted)]"
+              >
                 Message
               </label>
-              <span className={`text-xs ${formData.message.length > MAX_MESSAGE_LENGTH ? "text-red-400" : "text-[var(--color-muted)]"}`}>
+              <span
+                className={`text-xs ${formData.message.length > MAX_MESSAGE_LENGTH ? "text-red-700" : "text-[var(--color-muted)]"}`}
+              >
                 {formData.message.length}/{MAX_MESSAGE_LENGTH}
               </span>
             </div>
@@ -168,13 +187,18 @@ export default function ContactPage() {
               id="message"
               rows={3}
               value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value.slice(0, MAX_MESSAGE_LENGTH + 50) })}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  message: e.target.value.slice(0, MAX_MESSAGE_LENGTH + 50),
+                })
+              }
               onBlur={() => handleBlur("message")}
               className={`${getInputClass("message")} resize-none`}
               placeholder="Your message..."
             />
             {touched.message && !isValidMessage(formData.message) && (
-              <p className="text-red-400 text-xs mt-1">
+              <p className="text-red-700 text-xs mt-1">
                 {formData.message.length > MAX_MESSAGE_LENGTH
                   ? "Message is too long"
                   : "Message must be at least 10 characters"}
@@ -184,9 +208,17 @@ export default function ContactPage() {
 
           <button
             type="submit"
-            disabled={status === "loading" || !isValidName(formData.name) || !isValidEmail(formData.email) || !isValidMessage(formData.message)}
+            disabled={
+              status === "loading" ||
+              !isValidName(formData.name) ||
+              !isValidEmail(formData.email) ||
+              !isValidMessage(formData.message)
+            }
             className={`w-full px-8 py-4 font-semibold rounded transition-all ${
-              status === "loading" || !isValidName(formData.name) || !isValidEmail(formData.email) || !isValidMessage(formData.message)
+              status === "loading" ||
+              !isValidName(formData.name) ||
+              !isValidEmail(formData.email) ||
+              !isValidMessage(formData.message)
                 ? "bg-[var(--color-muted)]/30 text-[var(--color-muted)] cursor-not-allowed"
                 : "bg-[var(--color-accent)] text-[var(--color-background)] glow-hover"
             }`}
@@ -200,7 +232,7 @@ export default function ContactPage() {
             </p>
           )}
           {status === "error" && (
-            <p className="text-red-400 text-center">
+            <p className="text-red-700 text-center">
               Something went wrong. Please try again or email me directly.
             </p>
           )}
@@ -243,7 +275,7 @@ export default function ContactPage() {
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
               </svg>
               <span className="text-sm">LinkedIn</span>
             </a>

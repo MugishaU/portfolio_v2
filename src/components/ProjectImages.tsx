@@ -1,6 +1,4 @@
-"use client";
-
-import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 
 interface ProjectImagesProps {
   image: string;
@@ -13,57 +11,28 @@ export default function ProjectImages({
   mobileImage,
   title,
 }: ProjectImagesProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState<number>(400);
-
-  useEffect(() => {
-    const calculateHeight = () => {
-      if (containerRef.current) {
-        const width = containerRef.current.offsetWidth;
-        setHeight(Math.min(width * 0.45, 500));
-      }
-    };
-
-    calculateHeight();
-    window.addEventListener("resize", calculateHeight);
-    return () => window.removeEventListener("resize", calculateHeight);
-  }, []);
-
   return (
-    <div ref={containerRef} className="mb-6">
-      {/* Mobile layout - just desktop image, full width, centered */}
-      <div className="md:hidden">
-        <div className="rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
-          <img
-            src={image}
-            alt={`${title} - Desktop`}
-            className="w-full h-auto"
+    <div className="project-images">
+      <div className="project-desktop-image">
+        <Image
+          src={image}
+          alt={`${title} — desktop website`}
+          fill
+          sizes="(max-width: 760px) calc(100vw - 56px), 540px"
+          className="object-contain object-top"
+        />
+      </div>
+      {mobileImage && (
+        <div className="project-mobile-image">
+          <Image
+            src={mobileImage}
+            alt={`${title} — mobile website`}
+            fill
+            sizes="(max-width: 760px) 140px, 160px"
+            className="object-contain object-top"
           />
         </div>
-      </div>
-
-      {/* Desktop layout - both images side by side */}
-      <div
-        className="hidden md:flex gap-4 items-center justify-center"
-        style={{ height }}
-      >
-        <div className="h-full rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
-          <img
-            src={image}
-            alt={`${title} - Desktop`}
-            className="h-full w-auto"
-          />
-        </div>
-        {mobileImage && (
-          <div className="h-full rounded-lg overflow-hidden border border-[var(--color-muted)]/20">
-            <img
-              src={mobileImage}
-              alt={`${title} - Mobile`}
-              className="h-full w-auto"
-            />
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 }
