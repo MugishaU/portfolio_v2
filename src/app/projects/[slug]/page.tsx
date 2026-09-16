@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import ProjectImages from "@/components/ProjectImages";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -39,7 +38,6 @@ export default async function ProjectPage({
 
   return (
     <>
-      <Header />
       <main id="main-content" className="page-content project-content">
         <Link href="/projects" className="back-link">
           Back to Work

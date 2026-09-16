@@ -11,9 +11,22 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
-function Navigation({ pathname }: { pathname: string }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+export default function Header() {
+  const pathname = usePathname();
+  const [openPathname, setOpenPathname] = useState<string | null>(null);
+  const menuOpen = openPathname === pathname;
   const toggleRef = useRef<HTMLButtonElement>(null);
+
+  // Keep the overlay mounted, but start its exit fade when the route commits.
+  if (openPathname !== null && openPathname !== pathname) {
+    setOpenPathname(null);
+  }
+
+  function handleNavigation(href: string) {
+    if (!menuOpen) return;
+    toggleRef.current?.focus();
+    if (href === pathname) setOpenPathname(null);
+  }
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -24,7 +37,7 @@ function Navigation({ pathname }: { pathname: string }) {
     if (main) main.inert = true;
     const desktop = window.matchMedia("(min-width: 601px)");
     const closeOnDesktop = () => {
-      if (desktop.matches) setMenuOpen(false);
+      if (desktop.matches) setOpenPathname(null);
     };
     desktop.addEventListener("change", closeOnDesktop);
     return () => {
@@ -32,7 +45,7 @@ function Navigation({ pathname }: { pathname: string }) {
       if (main) main.inert = previousInert;
       desktop.removeEventListener("change", closeOnDesktop);
     };
-  }, [menuOpen]);
+  }, [menuOpen, pathname]);
 
   return (
     <header
@@ -54,12 +67,17 @@ function Navigation({ pathname }: { pathname: string }) {
           }
         }
         if (event.key === "Escape" && menuOpen) {
-          setMenuOpen(false);
+          setOpenPathname(null);
           toggleRef.current?.focus();
         }
       }}
     >
-      <Link href="/" className="wordmark" aria-label="MU. - Home">
+      <Link
+        href="/"
+        className="wordmark"
+        aria-label="MU. - Home"
+        onNavigate={() => handleNavigation("/")}
+      >
         <Logo />
       </Link>
       <button
@@ -69,7 +87,9 @@ function Navigation({ pathname }: { pathname: string }) {
         aria-label={menuOpen ? "Close menu" : "Open menu"}
         aria-expanded={menuOpen}
         aria-controls="site-navigation"
-        onClick={() => setMenuOpen((open) => !open)}
+        onClick={() => {
+          setOpenPathname(menuOpen ? null : pathname);
+        }}
       >
         <span aria-hidden="true" />
         <span aria-hidden="true" />
@@ -83,7 +103,7 @@ function Navigation({ pathname }: { pathname: string }) {
           <Link
             key={link.href}
             href={link.href}
-            onClick={() => setMenuOpen(false)}
+            onNavigate={() => handleNavigation(link.href)}
             aria-current={
               pathname === link.href ||
               (link.href === "/projects" && pathname.startsWith("/projects/"))
@@ -97,9 +117,4 @@ function Navigation({ pathname }: { pathname: string }) {
       </nav>
     </header>
   );
-}
-
-export default function Header() {
-  const pathname = usePathname();
-  return <Navigation key={pathname} pathname={pathname} />;
 }

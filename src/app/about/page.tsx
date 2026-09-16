@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import ContactFooter from "@/components/ContactFooter";
 import type { ReactNode } from "react";
 
@@ -92,7 +91,6 @@ const experience: TimelineEntry[] = [
 export default function AboutPage() {
   return (
     <>
-      <Header />
       <main id="main-content" className="page-content about-content">
         <h1>About.</h1>
         <p className="page-intro">

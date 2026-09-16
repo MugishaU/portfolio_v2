@@ -1,6 +1,5 @@
 "use client";
 
-import Header from "@/components/Header";
 import { useState, useEffect } from "react";
 
 const MAX_MESSAGE_LENGTH = 500;
@@ -84,9 +83,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-dvh flex flex-col">
-      <Header />
-
+    <>
       <main id="main-content" className="page-content contact-content">
         <h1>Contact.</h1>
         <p className="page-intro">
@@ -231,6 +228,6 @@ export default function ContactPage() {
           </a>
         </div>
       </main>
-    </div>
+    </>
   );
 }
