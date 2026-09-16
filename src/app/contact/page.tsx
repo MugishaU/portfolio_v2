@@ -33,21 +33,13 @@ export default function ContactPage() {
     message.trim().length >= 10 && message.length <= MAX_MESSAGE_LENGTH;
 
   const getInputClass = (field: "name" | "email" | "message") => {
-    const base =
-      "w-full px-4 py-3 bg-[var(--color-background)] border rounded text-[var(--color-foreground)] transition-colors";
-
-    if (!touched[field]) {
-      return `${base} border-[var(--color-muted)]/30 focus:border-[var(--color-accent)]`;
-    }
-
     const validators = {
       name: isValidName,
       email: isValidEmail,
       message: isValidMessage,
     };
-    const isValid = validators[field](formData[field]);
-
-    return `${base} ${isValid ? "border-green-500" : "border-red-500"}`;
+    const invalid = touched[field] && !validators[field](formData[field]);
+    return `contact-field${invalid ? " is-invalid" : ""}`;
   };
 
   const handleBlur = (field: "name" | "email" | "message") => {
@@ -213,16 +205,9 @@ export default function ContactPage() {
               !isValidEmail(formData.email) ||
               !isValidMessage(formData.message)
             }
-            className={`w-full px-8 py-4 font-semibold rounded transition-all ${
-              status === "loading" ||
-              !isValidName(formData.name) ||
-              !isValidEmail(formData.email) ||
-              !isValidMessage(formData.message)
-                ? "bg-[var(--color-muted)]/30 text-[var(--color-muted)] cursor-not-allowed"
-                : "bg-[var(--color-accent)] text-[var(--color-background)]"
-            }`}
+            className="contact-submit"
           >
-            {status === "loading" ? "Sending..." : "Send Message"}
+            {status === "loading" ? "Sending..." : "Send message"}
           </button>
 
           {status === "success" && (
