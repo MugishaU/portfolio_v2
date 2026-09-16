@@ -208,20 +208,6 @@ export default function ContactPage() {
             className="contact-submit"
           >
             {status === "loading" ? "Sending..." : "Send message"}
-            <svg
-              aria-hidden="true"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m22 2-7 20-4-9-9-4 20-7Z" />
-              <path d="M22 2 11 13" />
-            </svg>
           </button>
 
           {status === "success" && (

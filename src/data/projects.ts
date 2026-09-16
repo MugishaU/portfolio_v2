@@ -14,10 +14,9 @@ export const projects: Project[] = [
   {
     slug: "7styles",
     title: "7 Styles",
-    shortDescription:
-      "A salon website with online appointment booking and a shop for hair products.",
+    shortDescription: "Hair salon and retailer",
     description:
-      "A website for 7 Styles, a UK-based hair salon and product retailer. Customers can shop for hair products or book styling appointments online.",
+      "A WordPress website for 7 Styles, a UK-based hair salon and product retailer. Customers can shop for hair products or book styling appointments online.",
     thumbnail: "/projects/7-styles-desktop.jpeg",
     image: "/projects/7-styles-desktop.jpeg",
     mobileImage: "/projects/7-styles-mobile.jpeg",
@@ -26,10 +25,9 @@ export const projects: Project[] = [
   {
     slug: "amos-onchiri",
     title: "Amos Onchiri Life Coaching",
-    shortDescription:
-      "A coaching website where visitors can explore services, read advice, and book a session.",
+    shortDescription: "Life coaching services",
     description:
-      "A website for Amos Onchiri, a life coach helping clients find clarity, build confidence, and strengthen relationships. Visitors can explore his coaching services, read his blog, and book sessions with him.",
+      "A WordPress website for Amos Onchiri, a life coach helping clients find clarity, build confidence, and strengthen relationships. Visitors can explore his coaching services, read his blog, and book sessions with him.",
     thumbnail: "/projects/amos-onchiri-desktop.jpeg",
     image: "/projects/amos-onchiri-desktop.jpeg",
     mobileImage: "/projects/amos-onchiri-mobile.jpeg",
@@ -38,8 +36,7 @@ export const projects: Project[] = [
   {
     slug: "mirror-mirror",
     title: "Mirror Mirror",
-    shortDescription:
-      "A theatre website bringing together the story, cast, tickets, and directions.",
+    shortDescription: "Theatre production",
     description:
       "A simple promotional website for Mirror Mirror, a theatre production. Everything audiences needed to know about the show lived here, from the story and cast to tickets and directions.",
     thumbnail: "/projects/mirror-mirror-desktop.jpeg",
