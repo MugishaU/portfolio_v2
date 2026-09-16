@@ -59,7 +59,7 @@ function Navigation({ pathname }: { pathname: string }) {
         }
       }}
     >
-      <Link href="/" className="wordmark" aria-label="MU. — Home">
+      <Link href="/" className="wordmark" aria-label="MU. - Home">
         <Logo />
       </Link>
       <button

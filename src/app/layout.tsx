@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "Software engineer at Lapse. Backend systems and infrastructure.",
   openGraph: {
     title: "Portfolio",
-    description: "Mugisha Uwiragiye — Senior Software Engineer.",
+    description: "Mugisha Uwiragiye - Senior Software Engineer.",
     siteName: "Mugisha Uwiragiye",
     type: "website",
     images: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Portfolio",
-    description: "Mugisha Uwiragiye — Senior Software Engineer.",
+    description: "Mugisha Uwiragiye - Senior Software Engineer.",
     images: [{ url: "/og-image.png", alt: "MU | Mugisha Uwiragiye" }],
   },
   icons: {

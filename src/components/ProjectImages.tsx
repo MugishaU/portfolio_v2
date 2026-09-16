@@ -16,7 +16,7 @@ export default function ProjectImages({
       <div className="project-desktop-image">
         <Image
           src={image}
-          alt={`${title} — desktop website`}
+          alt={`${title} - desktop website`}
           fill
           sizes="(max-width: 600px) calc(100vw - 56px), (max-width: 800px) 72vw, 547px"
         />
@@ -25,7 +25,7 @@ export default function ProjectImages({
         <div className="project-mobile-image">
           <Image
             src={mobileImage}
-            alt={`${title} — mobile website`}
+            alt={`${title} - mobile website`}
             fill
             sizes="(max-width: 600px) 32vw, (max-width: 800px) 23vw, 173px"
           />
