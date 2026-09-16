@@ -40,7 +40,7 @@ export default async function ProjectPage({
     <>
       <main id="main-content" className="page-content project-content">
         <Link href="/projects" className="back-link">
-          Back to Work
+          Back to Projects
         </Link>
         <h1>{project.title}</h1>
         <p className="page-intro">{project.description}</p>

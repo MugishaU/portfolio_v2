@@ -6,7 +6,7 @@ export default function ProjectsPage() {
   return (
     <>
       <main id="main-content" className="page-content">
-        <h1>Work.</h1>
+        <h1>Projects.</h1>
         <p className="page-intro">
           A few websites I’ve designed and built for clients.
         </p>
