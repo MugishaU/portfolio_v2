@@ -308,6 +308,9 @@ a:hover {
 .menu-toggle {
   display: none;
 }
+.menu-toggle:focus {
+  outline: none;
+}
 @media (max-width: 600px) {
   .home {
     min-height: 100svh;
@@ -378,29 +381,13 @@ a:hover {
   .site-navigation.is-open a:nth-child(3) {
     transition-delay: 200ms;
   }
-  .menu-toggle {
+  .menu-toggle,
+  .wordmark {
     position: relative;
     z-index: 51;
   }
   .menu-toggle span {
     transition: transform 300ms ease;
-  }
-  .menu-is-open .menu-toggle {
-    position: fixed;
-    top: 24px;
-    right: 28px;
-  }
-  .menu-is-open .wordmark {
-    position: fixed;
-    top: 24px;
-    left: 28px;
-    z-index: 51;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-  }
-  .site-header.menu-is-open {
-    min-height: 92px;
   }
 }
 
