@@ -7,20 +7,20 @@ export const metadata: Metadata = {
     "Software engineer at Lapse. Backend systems and infrastructure.",
   icons: {
     icon: [
-      { url: "/icons/mu-favicon.svg?v=2", type: "image/svg+xml" },
+      { url: "/icons/mu-favicon.svg?v=3", type: "image/svg+xml" },
       {
-        url: "/icons/mu-favicon-32.png?v=2",
+        url: "/icons/mu-favicon-32.png?v=3",
         type: "image/png",
         sizes: "32x32",
       },
       {
-        url: "/icons/mu-icon-512.png?v=2",
+        url: "/icons/mu-icon-512.png?v=3",
         type: "image/png",
         sizes: "512x512",
       },
     ],
     apple: {
-      url: "/icons/mu-apple-touch-icon.png?v=2",
+      url: "/icons/mu-apple-touch-icon.png?v=3",
       sizes: "180x180",
       type: "image/png",
     },

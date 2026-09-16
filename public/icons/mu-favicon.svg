@@ -4,7 +4,7 @@
   fill="currentColor"
   style="color: #292b27"
 >
-  <rect width="3400" height="3400" fill="#faf9f6" />
+  <rect width="3400" height="3400" rx="637.5" fill="#faf9f6" />
   <g transform="translate(150 675)">
     <path
       transform="translate(190 1740) scale(1 -1)"

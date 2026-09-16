@@ -50,7 +50,7 @@ a:hover {
 .home-logo {
   font: 400 clamp(44px, 6vw, 56px) / 1.15 var(--font-heading);
   letter-spacing: -1.8px;
-  margin: 0 0 21px;
+  margin: 0 0 8px;
 }
 .home p {
   color: var(--color-muted);
