@@ -7,7 +7,20 @@ export default function WorkList({ projects }: { projects: Project[] }) {
       {projects.map((project) => (
         <li key={project.slug}>
           <Link href={`/projects/${project.slug}`}>
-            <span>{project.title}</span>
+            <span className="work-title">
+              {project.title}
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
+                <path d="M5 19 19 5M5 5h14v14" />
+              </svg>
+            </span>
             <span className="work-description">{project.shortDescription}</span>
           </Link>
         </li>

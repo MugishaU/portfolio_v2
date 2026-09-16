@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import ProjectImages from "@/components/ProjectImages";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects, getProjectBySlug, tagToSlug } from "@/data/projects";
+import { projects, getProjectBySlug } from "@/data/projects";
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -66,11 +66,6 @@ export default async function ProjectPage({
               GitHub
             </a>
           )}
-          {project.tags.map((tag) => (
-            <Link key={tag} href={`/tags/${tagToSlug(tag)}`}>
-              {tag}
-            </Link>
-          ))}
         </div>
         <ProjectImages
           image={project.image}

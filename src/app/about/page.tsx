@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import ContactFooter from "@/components/ContactFooter";
 import type { ReactNode } from "react";
-import Link from "next/link";
 
 type TimelineEntry = {
   id: string;
@@ -129,9 +128,6 @@ export default function AboutPage() {
           ))}
         </section>
         <ContactFooter />
-        <Link href="/thanks" className="thanks-link">
-          A few thank-yous
-        </Link>
       </main>
     </>
   );
