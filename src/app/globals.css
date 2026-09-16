@@ -426,17 +426,11 @@ a:hover {
 }
 
 .work-preview {
-  position: relative;
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   margin-bottom: 12px;
-  overflow: hidden;
   background: #eeede7;
-}
-.work-preview img {
-  object-fit: cover;
-  object-position: top;
 }
 
 body:has(.home) .site-header {

@@ -8,14 +8,15 @@ export default function WorkList({ projects }: { projects: Project[] }) {
       {projects.map((project) => (
         <li key={project.slug}>
           <Link href={`/projects/${project.slug}`}>
-            <span className="work-preview">
-              <Image
-                src={project.image}
-                alt={`${project.title} website preview`}
-                fill
-                sizes="(max-width: 800px) calc(100vw - 56px), 744px"
-              />
-            </span>
+            <Image
+              className="work-preview"
+              src={project.image}
+              alt={`${project.title} website preview`}
+              width={1600}
+              height={900}
+              style={{ width: "100%", height: "auto" }}
+              sizes="(max-width: 800px) calc(100vw - 56px), 744px"
+            />
             <span className="work-title">
               {project.title}
               <svg
