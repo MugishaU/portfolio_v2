@@ -86,11 +86,19 @@ a:hover {
   width: 100%;
 }
 .wordmark {
-  font: 400 29px/1.2 var(--font-heading);
-  letter-spacing: -1px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-foreground);
 }
 .wordmark:hover {
   text-decoration: none;
+  color: var(--color-muted);
+}
+.site-logo {
+  display: block;
+  width: 64px;
+  height: auto;
 }
 .page-content {
   width: 100%;
@@ -440,4 +448,8 @@ body:has(.home) .site-header {
 .contact-content textarea,
 .contact-content button {
   font: inherit;
+}
+
+.work-contact {
+  margin-top: 64px;
 }

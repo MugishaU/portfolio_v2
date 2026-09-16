@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -59,7 +60,7 @@ function Navigation({ pathname }: { pathname: string }) {
       }}
     >
       <Link href="/" className="wordmark" aria-label="MU. — Home">
-        MU.
+        <Logo />
       </Link>
       <button
         ref={toggleRef}
