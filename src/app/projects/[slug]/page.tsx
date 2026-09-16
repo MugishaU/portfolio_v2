@@ -18,10 +18,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) {
-    return { title: "Project Not Found" };
+    return {};
   }
   return {
-    title: `${project.title} | Mugisha Uwiragiye`,
     description: project.description,
   };
 }
