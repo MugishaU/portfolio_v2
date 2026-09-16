@@ -5,10 +5,10 @@ export default function Home() {
     <main id="main-content" className="home">
       <div className="home-intro">
         <h1 className="home-logo" aria-label="Mugisha Uwiragiye">
-          MU.
+          Mugisha Uwiragiye
         </h1>
         <p>
-          Software engineer at Lapse.
+          Senior Software Engineer.
           <br />I build backend systems.
         </p>
         <nav className="text-links" aria-label="Main navigation">

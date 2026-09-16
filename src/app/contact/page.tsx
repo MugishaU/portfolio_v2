@@ -34,7 +34,7 @@ export default function ContactPage() {
 
   const getInputClass = (field: "name" | "email" | "message") => {
     const base =
-      "w-full px-4 py-3 bg-[var(--color-background)] border rounded text-[var(--color-foreground)] focus:outline-none transition-colors";
+      "w-full px-4 py-3 bg-[var(--color-background)] border rounded text-[var(--color-foreground)] transition-colors";
 
     if (!touched[field]) {
       return `${base} border-[var(--color-muted)]/30 focus:border-[var(--color-accent)]`;
@@ -96,13 +96,8 @@ export default function ContactPage() {
       <Header />
 
       <main id="main-content" className="page-content contact-content">
-        <h1
-          className="text-4xl md:text-6xl font-bold tracking-tight text-[var(--color-foreground)] mb-6 uppercase"
-          style={{ fontFamily: "var(--font-heading)" }}
-        >
-          Contact Me
-        </h1>
-        <p className="text-[var(--color-foreground)] mb-6 text-center max-w-md">
+        <h1>Contact.</h1>
+        <p className="page-intro">
           Have a question or want to work together? Send me a message.
         </p>
 
@@ -129,6 +124,8 @@ export default function ContactPage() {
             <input
               type="text"
               id="name"
+              autoComplete="name"
+              aria-invalid={touched.name && !isValidName(formData.name)}
               value={formData.name}
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
@@ -138,7 +135,7 @@ export default function ContactPage() {
               placeholder="Your name"
             />
             {touched.name && !isValidName(formData.name) && (
-              <p className="text-red-700 text-xs mt-1">
+              <p className="field-error text-xs mt-1" role="alert">
                 Name must be at least 2 characters
               </p>
             )}
@@ -154,6 +151,8 @@ export default function ContactPage() {
             <input
               type="email"
               id="email"
+              autoComplete="email"
+              aria-invalid={touched.email && !isValidEmail(formData.email)}
               value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
@@ -163,7 +162,7 @@ export default function ContactPage() {
               placeholder="your@email.com"
             />
             {touched.email && !isValidEmail(formData.email) && (
-              <p className="text-red-700 text-xs mt-1">
+              <p className="field-error text-xs mt-1" role="alert">
                 Please enter a valid email address
               </p>
             )}
@@ -185,7 +184,7 @@ export default function ContactPage() {
             </div>
             <textarea
               id="message"
-              rows={3}
+              rows={5}
               value={formData.message}
               onChange={(e) =>
                 setFormData({
@@ -194,11 +193,11 @@ export default function ContactPage() {
                 })
               }
               onBlur={() => handleBlur("message")}
-              className={`${getInputClass("message")} resize-none`}
+              className={`${getInputClass("message")} resize-y`}
               placeholder="Your message..."
             />
             {touched.message && !isValidMessage(formData.message) && (
-              <p className="text-red-700 text-xs mt-1">
+              <p className="field-error text-xs mt-1" role="alert">
                 {formData.message.length > MAX_MESSAGE_LENGTH
                   ? "Message is too long"
                   : "Message must be at least 10 characters"}
@@ -220,66 +219,31 @@ export default function ContactPage() {
               !isValidEmail(formData.email) ||
               !isValidMessage(formData.message)
                 ? "bg-[var(--color-muted)]/30 text-[var(--color-muted)] cursor-not-allowed"
-                : "bg-[var(--color-accent)] text-[var(--color-background)] glow-hover"
+                : "bg-[var(--color-accent)] text-[var(--color-background)]"
             }`}
           >
             {status === "loading" ? "Sending..." : "Send Message"}
           </button>
 
           {status === "success" && (
-            <p className="text-[var(--color-accent-secondary)] text-center">
-              Message sent successfully!
-            </p>
+            <p role="status">Message sent successfully!</p>
           )}
           {status === "error" && (
-            <p className="text-red-700 text-center">
+            <p role="alert">
               Something went wrong. Please try again or email me directly.
             </p>
           )}
         </form>
 
-        {/* Direct Contact Info */}
-        <div className="mt-8 flex flex-col items-center gap-3">
-          <p className="text-[var(--color-muted)] text-sm">Or find me here:</p>
-          <div className="flex gap-6">
-            <a
-              href="mailto:me@mugisha.io"
-              className="flex items-center gap-2 text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <rect width="20" height="16" x="2" y="4" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
-              <span className="text-sm">me@mugisha.io</span>
-            </a>
-            <a
-              href="https://linkedin.com/in/mugisha-uwiragiye"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-              <span className="text-sm">LinkedIn</span>
-            </a>
-          </div>
+        <div className="direct-contact">
+          <a href="mailto:me@mugisha.io">me@mugisha.io</a>
+          <a
+            href="https://linkedin.com/in/mugisha-uwiragiye"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
         </div>
       </main>
     </div>

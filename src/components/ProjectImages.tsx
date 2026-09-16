@@ -18,8 +18,7 @@ export default function ProjectImages({
           src={image}
           alt={`${title} — desktop website`}
           fill
-          sizes="(max-width: 760px) calc(100vw - 56px), 540px"
-          className="object-contain object-top"
+          sizes="(max-width: 600px) calc(100vw - 56px), (max-width: 800px) 72vw, 547px"
         />
       </div>
       {mobileImage && (
@@ -28,8 +27,7 @@ export default function ProjectImages({
             src={mobileImage}
             alt={`${title} — mobile website`}
             fill
-            sizes="(max-width: 760px) 140px, 160px"
-            className="object-contain object-top"
+            sizes="(max-width: 600px) 32vw, (max-width: 800px) 23vw, 173px"
           />
         </div>
       )}

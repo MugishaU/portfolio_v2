@@ -42,7 +42,7 @@ a:hover {
   padding: 72px clamp(28px, 12vw, 125px);
 }
 .home-intro {
-  max-width: 450px;
+  max-width: 640px;
 }
 .home-logo {
   font: 400 clamp(44px, 6vw, 56px) / 1.15 var(--font-heading);
@@ -91,7 +91,7 @@ a:hover {
 }
 .page-content {
   width: 100%;
-  max-width: 696px;
+  max-width: 800px;
   padding: 64px 28px 80px;
   margin: 0 auto;
 }
@@ -101,7 +101,7 @@ a:hover {
   text-transform: none;
   margin: 0 0 25px;
 }
-.page-content p {
+.page-content p:not([role="alert"]):not([role="status"]):not(.field-error) {
   color: var(--color-muted);
 }
 .page-intro {
@@ -203,19 +203,51 @@ a:hover {
   margin: -12px 0 34px;
 }
 .project-images {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3.16fr 1fr;
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
+  container-type: inline-size;
 }
-.project-desktop-image {
-  position: relative;
-  flex: 1;
-  aspect-ratio: 4 / 3;
-}
+.project-desktop-image,
 .project-mobile-image {
   position: relative;
-  width: 160px;
-  aspect-ratio: 1 / 2;
+  min-width: 0;
+}
+.project-desktop-image {
+  aspect-ratio: 16 / 9;
+}
+.project-mobile-image {
+  height: 100%;
+}
+.project-images img {
+  object-fit: cover;
+  object-position: top;
+}
+.thanks-list {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+}
+.direct-contact {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  font-size: 14px;
+}
+.direct-contact a {
+  text-decoration: underline;
+  text-decoration-color: #a4a69d;
+}
+.field-error,
+[role="alert"] {
+  color: #b42318;
+}
+[role="status"] {
+  color: #32613f;
 }
 .contact-content form {
   max-width: none;
@@ -255,13 +287,27 @@ a:hover {
     padding-left: 24px;
   }
   .project-images {
-    flex-direction: column;
-  }
-  .project-desktop-image {
-    width: 100%;
-    flex: auto;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
   .project-mobile-image {
-    width: 140px;
+    height: 56.25cqw;
+    width: 31.64cqw;
+    justify-self: center;
+  }
+  .home-logo {
+    font-size: clamp(36px, 9vw, 44px);
+    letter-spacing: -1.2px;
+  }
+}
+@media (pointer: coarse) {
+  .text-links a,
+  .wordmark,
+  .back-link,
+  .contact-footer a,
+  .thanks-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
 }

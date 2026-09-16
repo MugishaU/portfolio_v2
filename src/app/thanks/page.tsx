@@ -25,36 +25,16 @@ export default function ThanksPage() {
 
       {/* Content */}
       <main id="main-content" className="page-content">
-        <h1
-          className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-foreground)] mb-4 animate-fade-up"
-          style={{ fontFamily: "var(--font-heading)" }}
-        >
-          Special Thanks
-        </h1>
-
-        <p className="text-center text-[var(--color-muted)] max-w-md leading-relaxed mb-6 animate-fade-up animate-delay-100">
+        <h1>Special thanks.</h1>
+        <p className="page-intro">
           To my great design consultants who helped me make stylistic choices
           throughout the process (4 years later lol) 💛
         </p>
-
-        {/* Divider */}
-        <hr className="border-[var(--color-muted)]/30 w-40 mb-8 animate-fade-up animate-delay-200" />
-
-        {/* Names list */}
-        <div className="flex flex-col items-center gap-3 animate-fade-up animate-delay-300">
+        <ul className="thanks-list">
           {names.map((person) => (
-            <span
-              key={person.name}
-              className={`text-base md:text-lg tracking-wide ${
-                person.accent
-                  ? "text-[var(--color-accent)] font-medium"
-                  : "text-[var(--color-foreground)]"
-              }`}
-            >
-              {person.name}
-            </span>
+            <li key={person.name}>{person.name}</li>
           ))}
-        </div>
+        </ul>
       </main>
     </div>
   );
