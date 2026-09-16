@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Project } from "@/data/projects";
 
 export default function WorkList({ projects }: { projects: Project[] }) {
@@ -7,6 +8,14 @@ export default function WorkList({ projects }: { projects: Project[] }) {
       {projects.map((project) => (
         <li key={project.slug}>
           <Link href={`/projects/${project.slug}`}>
+            <span className="work-preview">
+              <Image
+                src={project.image}
+                alt={`${project.title} website preview`}
+                fill
+                sizes="(max-width: 800px) calc(100vw - 56px), 744px"
+              />
+            </span>
             <span className="work-title">
               {project.title}
               <svg

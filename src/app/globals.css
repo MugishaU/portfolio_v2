@@ -124,7 +124,7 @@ a:hover {
   margin: 0;
 }
 .work-list li + li {
-  margin-top: 24px;
+  margin-top: 48px;
 }
 .work-list a {
   display: flex;
@@ -423,6 +423,20 @@ a:hover {
 }
 .work-description {
   max-width: 560px;
+}
+
+.work-preview {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 12px;
+  overflow: hidden;
+  background: #eeede7;
+}
+.work-preview img {
+  object-fit: cover;
+  object-position: top;
 }
 
 body:has(.home) .site-header {
