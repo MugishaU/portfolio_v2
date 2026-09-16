@@ -12,6 +12,17 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "lewisham-youth-theatre",
+    title: "Lewisham Youth Theatre",
+    shortDescription: "Youth theatre and creative programmes",
+    description:
+      "A website for Lewisham Youth Theatre, a charity offering free, inclusive theatre opportunities for young people aged 8–25. Visitors can explore performance and backstage programmes, discover upcoming events, and find ways to get involved.",
+    thumbnail: "/projects/lewisham-youth-theatre-free-youth-desktop.jpeg",
+    image: "/projects/lewisham-youth-theatre-free-youth-desktop.jpeg",
+    mobileImage: "/projects/lewisham-youth-theatre-free-youth-mobile.jpeg",
+    websiteUrl: "https://lewishamyouththeatre.com",
+  },
+  {
     slug: "7styles",
     title: "7 Styles",
     shortDescription: "Hair salon and retailer",
