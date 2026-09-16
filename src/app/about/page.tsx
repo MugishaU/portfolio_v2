@@ -96,12 +96,14 @@ export default function AboutPage() {
       <main id="main-content" className="page-content about-content">
         <h1>About.</h1>
         <p className="page-intro">
-          I’m Mugisha Uwiragiye, a Senior Software Engineer at Lapse. I build
-          backend systems and the infrastructure that supports them.
+          My name is Mugisha Uwiragiye, and I am currently a Senior Software
+          Engineer at Lapse.
         </p>
         <p>
-          Before Lapse, I worked on payments at Kaluza. My work spans APIs,
-          cloud infrastructure, and deployment pipelines.
+          I specialise in building secure and scalable backend systems,
+          leveraging infrastructure as code, CI/CD pipelines, and cloud
+          computing. I enjoy solving complex problems and delivering reliable
+          systems at scale.
         </p>
         <section className="experience" aria-labelledby="experience-heading">
           <h2 id="experience-heading">Experience</h2>
