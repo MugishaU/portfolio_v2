@@ -39,11 +39,13 @@ export default async function ProjectPage({
   return (
     <>
       <main id="main-content" className="page-content project-content">
-        <Link href="/projects" className="back-link">
-          Back to Projects
-        </Link>
         <h1>{project.title}</h1>
         <p className="page-intro">{project.description}</p>
+        <ProjectImages
+          image={project.image}
+          mobileImage={project.mobileImage}
+          title={project.title}
+        />
         <div className="text-links project-links">
           {project.websiteUrl && (
             <a
@@ -64,11 +66,9 @@ export default async function ProjectPage({
             </a>
           )}
         </div>
-        <ProjectImages
-          image={project.image}
-          mobileImage={project.mobileImage}
-          title={project.title}
-        />
+        <Link href="/projects" className="back-link">
+          Back to Projects
+        </Link>
       </main>
     </>
   );
