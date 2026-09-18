@@ -1,4 +1,5 @@
 import ContactFooter from "@/components/ContactFooter";
+import ExperienceDisclosure from "@/components/ExperienceDisclosure";
 import type { ReactNode } from "react";
 
 type TimelineEntry = {
@@ -106,11 +107,12 @@ export default function AboutPage() {
         <section className="experience" aria-labelledby="experience-heading">
           <h2 id="experience-heading">Experience</h2>
           {experience.map((entry) => (
-            <details key={entry.id}>
-              <summary>
-                <span>{entry.company}</span>
-                <span className="experience-date">{entry.dateRange}</span>
-              </summary>
+            <ExperienceDisclosure
+              key={entry.id}
+              id={entry.id}
+              company={entry.company}
+              dateRange={entry.dateRange}
+            >
               <div className="experience-roles">
                 {entry.roles.map((role) => (
                   <section key={role.title}>
@@ -124,7 +126,7 @@ export default function AboutPage() {
                   </section>
                 ))}
               </div>
-            </details>
+            </ExperienceDisclosure>
           ))}
         </section>
         <ContactFooter />
