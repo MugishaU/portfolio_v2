@@ -30,24 +30,22 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/favicon.ico?v=4",
+        url: "/icons/mu-rounded-64.ico",
         type: "image/x-icon",
-        sizes: "16x16 32x32 48x48",
+        sizes: "any",
       },
       {
-        url: "/icons/mu-rounded-32.png",
+        url: "/icons/mu-rounded-64.png",
         type: "image/png",
-        sizes: "32x32",
+        sizes: "64x64",
       },
       {
         url: "/icons/mu-rounded.svg",
         type: "image/svg+xml",
-        sizes: "any",
       },
     ],
-    shortcut: "/favicon.ico?v=4",
     apple: {
-      url: "/icons/mu-rounded-apple-touch.png",
+      url: "/apple-touch-icon.png",
       sizes: "180x180",
       type: "image/png",
     },
