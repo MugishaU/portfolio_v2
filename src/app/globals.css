@@ -276,13 +276,16 @@ a:hover {
   font-size: 16px;
 }
 .contact-footer a,
-.back-link {
+.project-link {
   text-decoration: underline;
   text-decoration-color: #a4a69d;
 }
-.back-link {
-  display: inline-block;
-  font-size: 16px;
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+  font: 400 16px / 1.65 var(--font-body);
   color: var(--color-foreground);
 }
 .project-content {
@@ -290,6 +293,9 @@ a:hover {
   padding-bottom: 32px;
 }
 .project-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin: 24px 0 0;
 }
 .project-images {
@@ -305,6 +311,8 @@ a:hover {
   min-width: 0;
 }
 .project-desktop-image {
+  /* Give Safari a width to resolve the aspect ratio of this empty grid item. */
+  width: 100%;
   aspect-ratio: 16 / 9;
 }
 .project-mobile-image {
@@ -388,7 +396,6 @@ a:hover {
 @media (pointer: coarse) {
   .text-links a,
   .wordmark,
-  .back-link,
   .contact-footer a {
     min-height: 44px;
     display: inline-flex;

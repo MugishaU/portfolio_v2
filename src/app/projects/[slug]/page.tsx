@@ -46,9 +46,10 @@ export default async function ProjectPage({
           mobileImage={project.mobileImage}
           title={project.title}
         />
-        <div className="text-links project-links">
+        <div className="project-links">
           {project.websiteUrl && (
             <a
+              className="project-link"
               href={project.websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -58,6 +59,7 @@ export default async function ProjectPage({
           )}
           {project.githubUrl && (
             <a
+              className="project-link"
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -65,10 +67,10 @@ export default async function ProjectPage({
               GitHub
             </a>
           )}
+          <Link href="/projects" className="project-link">
+            Back to Projects
+          </Link>
         </div>
-        <Link href="/projects" className="back-link">
-          Back to Projects
-        </Link>
       </main>
     </>
   );
